@@ -8,9 +8,12 @@ const Register = () => {
         name: "",
         username: "",
         password: "",
-        TyC: false
+        street: "",
+        city: "",
+        cp: "",
+        termsAndCond: false
     });
-    const {register} = useUser();
+    const { register } = useUser();
     const navigate = useNavigate();
 
     const [canSubmit, setCanSubmit] = useState(false);
@@ -20,14 +23,17 @@ const Register = () => {
             newUser.name &&
             newUser.username &&
             newUser.password &&
-            newUser.TyC
+            newUser.street &&
+            newUser.city &&
+            newUser.cp &&
+            newUser.termsAndCond
         );
     }, [newUser]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         register(newUser);
-        setNewUser({ name: "", username: "", password: "", TyC: false });
+        setNewUser({ name: "", username: "", password: "", street: "", city: "", cp: "", termsAndCond: false });
         navigate("/");
     };
 
@@ -75,11 +81,42 @@ const Register = () => {
                 />
             </label>
             <label className="label">
-                T&C:
+                Dirección:
+                <input
+                    type="text"
+                    name="street"
+                    value={newUser.street}
+                    onChange={handleOnChange}
+                    className="input"
+                    placeholder="Dirección"
+                />
+            </label>
+            <label className="label">
+                <input
+                    type="text"
+                    name="city"
+                    value={newUser.city}
+                    onChange={handleOnChange}
+                    className="input"
+                    placeholder="Ciudad"
+                />
+            </label>
+            <label className="label">
+                <input
+                    type="text"
+                    name="cp"
+                    value={newUser.cp}
+                    onChange={handleOnChange}
+                    className="input"
+                    placeholder="Codigo Postal"
+                />
+            </label>
+            <label className="label">
+                Terminos y condiciones
                 <input
                     type="checkbox"
-                    name="TyC"
-                    checked={newUser.TyC}
+                    name="termsAndCond"
+                    checked={newUser.termsAndCond}
                     onChange={handleOnChange}
                     className="input"
                 />

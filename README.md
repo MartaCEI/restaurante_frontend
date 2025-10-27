@@ -39,9 +39,9 @@ Crear carpetas pages, components, hooks, lib, css, lib/routes.
 - [X] Vinculamos el contexto de usuario con los formularios y el header.
 - [X] Proteger ruta privada <PrivateRoute>
 - [X] Crear Variables de entorno para VITE
-- [] Crear los fetch para Login y Registro
-- [] Token con JWT y guardarlo en LocalStorage (Explicado en el backend)
-- [] Upload de Archivos.
+- [x] Crear los fetch para Login y Registro
+- [x] Token con JWT y guardarlo en LocalStorage (Explicado en el backend)
+- [x] Upload de Archivos.
 
 1. Crear Front con Vite-React + React-Router-Dom
 ```bash	
@@ -940,3 +940,113 @@ VITE_STATIC_URL = "http://localhost:3000"
 VITE_BACKEND_URL = "http://localhost:3000/api/v1"
 ```
 
+21. (ESTE PASO VA DESPUES DE HABER CREADO LOS CONTROLADORES DEL BACKEND PARA SABER QUE INFORMACIÓN SE RECIBE.) Creación de los fetch del frontend para usar el token JWT en zonas privadas.
+En useUser.jsx, en login y register guardar el token que devuelve el backend.
+- En el backend, en los controladores de login y register, modificar la respuesta para que devuelva el token JWT junto con la información del usuario.
+- Estructura del backend:
+```js
+const responseAPI = {
+    data: null,
+    msg: "",
+    count: 0,
+    status: "ok"
+};
+```
+- Respuesta de data del backend incluyendo el token:
+```js
+responseAPI.data = { name: user.name, username: user.username, token};
+```
+- En el contexto useUser.jsx, en login y register, guardar el token en localStorage.
+```js
+localStorage.setItem("token", response.data.token);
+```
+- Funciones login, register y logout actualizadas:
+```js
+const urlBackend = import.meta.env.VITE_BACKEND_URL;
+const urlStatic = import.meta.env.VITE_STATIC_URL;
+
+// Funcion register
+const register = async (newUser) => {
+        try {
+            const res = await fetch(`${urlBackend}/register`, {
+                method: "POST",
+                headers: { "Content-type": "application/json" },
+                body: JSON.stringify(newUser),
+            });
+            const response = await res.json();
+
+            if (response.status === "error") {
+                setError(response.msg);
+                setUser(null);
+                return;
+            }
+            // El backend me devuelve la info menos el password y guardo en localstorage
+            // NOTA: localStoreage no guarda objetos, SOLO STRINGS.
+            setUser(response.data);
+            localStorage.setItem("user", JSON.stringify(response.data));
+            localStorage.setItem("token", response.data.token); // Guardar token JWT
+            setError(null);
+        } catch (error) {
+            setError("Hubo un error en el login");
+            setUser(null);
+        }
+    }
+
+     // Funcion login
+    const login = async (userData) => {
+        try {
+            const res = await fetch(`${urlBackend}/login`, {
+                method: "POST",
+                headers: { "Content-type": "application/json" },
+                body: JSON.stringify(userData),
+            });
+            const response = await res.json();
+
+            if (response.status === "error") {
+                setError(response.msg);
+                setUser(null);
+                return;
+            }
+            // El backend me devuelve la info menos el password y guardo en localstorage
+            // NOTA: localStoreage no guarda objetos, SOLO STRINGS.
+            setUser(response.data);
+            localStorage.setItem("user", JSON.stringify(response.data));
+            localStorage.setItem("token", response.data.token); // Guardar token JWT
+            setError(null);
+        } catch (error) {
+            setError("Hubo un error en el login");
+            setUser(null);
+        }
+    };
+
+    // Funcion logout
+    const logout = () => {
+        console.log("Estoy en logout")
+        // borrar localstorage
+        localStorage.removeItem("user")
+        localStorage.removeItem("token"); // Borrar token JWT
+        setUser(null)
+    }
+```
+
+Ruta privada /admin/users, mandar el token en el 'headers'/"Authorization": `Bearer ${token}`.
+```js
+const fetchAdminData = async () => {
+    try {
+        const token = localStorage.getItem("token");
+        const res = await fetch(`${URL}/admin/users`, {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json",
+                "Authorization": `Bearer ${token}` // Enviar el token JWT en el header
+            }
+        });
+        const response = await res.json();
+        console.log("Datos privados de admin:", response.data);
+    } catch (error) {
+        console.log("Error al acceder a datos privados de admin:", error);
+    }
+}
+
+fetchAdminData();
+```
