@@ -4,11 +4,14 @@ import '@/css/restaurante.css'
 import { RouterProvider } from 'react-router-dom'
 import router from '@/libs/routes/routes'
 import { UserProvider } from '@/hooks/useUser'
+import { MenuProvider } from './hooks/useMenu'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <UserProvider>
-      <RouterProvider router={router} />
+      <MenuProvider>
+        <RouterProvider router={router} />
+      </MenuProvider>
     </UserProvider>
   </StrictMode>,
 )

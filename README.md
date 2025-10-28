@@ -1028,7 +1028,7 @@ const register = async (newUser) => {
         setUser(null)
     }
 ```
-
+Ejemplo de ruta privada usando el token JWT.
 Ruta privada /admin/users, mandar el token en el 'headers'/"Authorization": `Bearer ${token}`.
 ```js
 const fetchAdminData = async () => {
@@ -1050,3 +1050,44 @@ const fetchAdminData = async () => {
 
 fetchAdminData();
 ```
+
+# 2ª Fase del Frontend del Proyecto Restaurante
+
+## Lista de tareas frontend
+- [x] Crear hook personalizado `hooks/useMenu.js` para gestionar el estado del menú y las operaciones relacionadas.
+- [x] Abrazar el main.jsx con el MenuProvider para que toda la app tenga acceso al menú.
+- [ ] Crear la funcionalidad de fetch para obtener el menú desde el backend y guardarlo en el contexto del menú.
+- [ ] Mostrar el menú dinámicamente en la página Menu utilizando los datos del contexto del menú.
+- [ ] Implementar la funcionalidad de añadir productos al carrito desde la página Menu.
+- [ ] Implementar la funcionalidad de carga de imágenes en el backend y conectar con el frontend.
+- [ ] Crear hook personalizado `hooks/useAdmin.js` para gestionar las operaciones administrativas y rutas privadas.
+- [ ] Implementar la funcionalidad de gestión del menú en la página Admin (CRUD de platos).
+- [ ] Implementar la funcionalidad de gestión de pedidos en la página Admin (ver y actualizar el estado de los pedidos).
+
+1. Crear hook personalizado `hooks/useMenu.js` para gestionar el estado del menú y las operaciones relacionadas.
+```js
+const MenuContext = createContext();
+
+export const MenuProvider = ({children}) => {
+    return (
+        <MenuContext.Provider value={{}}>
+            {children}
+        </MenuContext.Provider>
+    )
+};
+
+export const useMenu = () => useContext(MenuContext);
+```
+2. Abrazar el main.jsx con el MenuProvider para que toda la app tenga acceso
+```js
+import { MenuProvider } from "@/hooks/useMenu";
+--- IGNORE ---
+    <UserProvider>
+        <MenuProvider>
+            <RouterProvider router={router} />
+        </MenuProvider>
+    </UserProvider>
+--- IGNORE ---
+```
+
+3. Crear la funcionalidad de fetch para obtener el menú desde el backend y guardarlo en el contexto del menú.
