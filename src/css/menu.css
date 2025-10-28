@@ -1,0 +1,78 @@
+/* ----- Menu.jsx ----- */
+.menu-buttons {
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 62rem;
+    justify-content: center;
+    justify-items: auto;
+    align-items: center;
+    padding: 2rem;
+}
+
+.menu-button {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: burlywood;
+    color: aliceblue;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 1rem;
+}
+
+.menu-flex {
+    width: 100%;
+    max-width: 62rem;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 2rem 0;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+}
+
+.dish-h2 {
+    text-transform: uppercase;
+    width: 14rem;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    padding: 0.5rem;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* dos columnas fijas */
+    gap: 20px;
+    width: 100%;
+}
+
+.menu-card {
+    width: 100%; /* ocupa todo el ancho de su columna */
+    display: flex;
+    flex-flow: column nowrap;
+    text-align: left;
+    padding: 15px;
+    border-radius: 8px;
+    gap: 1.5rem;
+    box-sizing: border-box;
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+}
+
+.card-title {
+    flex: 1;
+}
+
+.card-price {
+    color: rgb(185, 119, 32);
+}
+
+.card-desc {
+    width: 100%;
+}

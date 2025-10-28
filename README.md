@@ -1054,17 +1054,17 @@ fetchAdminData();
 # 2ª Fase del Frontend del Proyecto Restaurante
 
 ## Lista de tareas frontend
-- [x] Crear hook personalizado `hooks/useMenu.js` para gestionar el estado del menú y las operaciones relacionadas.
+- [x] Crear hook personalizado `hooks/useMenu.jsx` para gestionar el estado del menú y las operaciones relacionadas.
 - [x] Abrazar el main.jsx con el MenuProvider para que toda la app tenga acceso al menú.
-- [ ] Crear la funcionalidad de fetch para obtener el menú desde el backend y guardarlo en el contexto del menú.
-- [ ] Mostrar el menú dinámicamente en la página Menu utilizando los datos del contexto del menú.
+- [x] Crear la funcionalidad de fetch para obtener el menú desde el backend y guardarlo en el contexto del menú.
+- [x] Mostrar el menú dinámicamente en la página Menu utilizando los datos del contexto del menú.
 - [ ] Implementar la funcionalidad de añadir productos al carrito desde la página Menu.
 - [ ] Implementar la funcionalidad de carga de imágenes en el backend y conectar con el frontend.
-- [ ] Crear hook personalizado `hooks/useAdmin.js` para gestionar las operaciones administrativas y rutas privadas.
+- [ ] Crear hook personalizado `hooks/useAdmin.jsx` para gestionar las operaciones administrativas y rutas privadas.
 - [ ] Implementar la funcionalidad de gestión del menú en la página Admin (CRUD de platos).
 - [ ] Implementar la funcionalidad de gestión de pedidos en la página Admin (ver y actualizar el estado de los pedidos).
 
-1. Crear hook personalizado `hooks/useMenu.js` para gestionar el estado del menú y las operaciones relacionadas.
+1. Crear hook personalizado `hooks/useMenu.jsx` para gestionar el estado del menú y las operaciones relacionadas.
 ```js
 const MenuContext = createContext();
 
@@ -1091,3 +1091,180 @@ import { MenuProvider } from "@/hooks/useMenu";
 ```
 
 3. Crear la funcionalidad de fetch para obtener el menú desde el backend y guardarlo en el contexto del menú.
+```js
+const urlBackend = import.meta.env.VITE_BACKEND_URL;
+const urlStatic = import.meta.env.VITE_STATIC_URL;
+
+const [dishes, setDishes] = useState(null);
+const [filteredDishes, setFilteredDishes] = useState(null);
+const [singleDish, setSingleDish] = useState(null);
+const [error, setError] = useState(null);
+
+// router.get('/dishes', getAllDishes) // getAllDishes()
+const getAllDishes = async () => {
+    try {
+        const res = await fetch(`${URL}/dishes`);
+        const response = await res.json();
+        if (response.status === "error") {
+            setError(response.msg);
+            setDishes(null);
+            return;
+        }
+        setDishes(response.data);
+        setError(null);
+        console.log("[getAllDishes] Platos encontrados:", response);
+    } catch (error) {
+        console.log("[getAllDishes] Error:", error);
+        setError("Hubo un error al obtener los platos.");
+        setDishes(null);
+    }
+}
+
+useEffect(()=>{
+    getAllDishes();
+},[]);
+
+// router.get('/dishes/:id', getDishById) // getDishById(id)
+const getDishById = async (dishId) => {
+    try {
+        const res = await fetch(`${urlBackend}/dishes/${dishId}`);
+        const response = await res.json();
+        if (response.status === "error") {
+            setError(response.msg);
+            setDishes(null);
+            return;
+        }
+        setSingleDish(response.data);
+        setError(null)
+        console.log("[getDishById]: Plato encontrado:", response);
+    } catch (error) {
+        console.log("[getDishById] Error:", error);
+        setError("Hubo un error al obtener los platos.");
+        setDishes(null);
+    }
+}
+
+// router.get('/dishes/:type', getDishesByType) // getDishesByType(type);
+const getDishesByType = async (dishType) => {
+    try {
+        const res = await fetch(`${urlBackend}/dishes/${dishType}`);
+        const response = await res.json();
+        if (response.status === "error") {
+            setError(response.msg)
+            setFilteredDishes(null)
+            console.log("[getDishesByType]: Platos encontrados:", response);
+        }
+        setFilteredDishes(response.data);
+        setError(null);
+    } catch (error) {
+        console.log("[getDishesByType]: Error:", error);
+        setError("Hubo un error al obtener los platos.");
+        setDishes(null);
+    }
+}
+
+return (
+    <MenuContext.Provider value={{
+                            dishes,
+                            filteredDishes,
+                            singleDish,
+                            error,
+                            getDishById,
+                            getDishesByType
+                        }}>
+        {children}
+    </MenuContext.Provider>
+)
+```
+
+4. Mostrar el menú dinámicamente en la página Menu utilizando los datos del contexto del menú.
+```jsx pages/Menu.jsx
+import { useState, useEffect } from "react";
+import { useMenu } from "@/hooks/useMenu";
+import TopPictures from "@/components/TopPictures";
+import MenuCard from "@/components/MenuCard";
+import MenuButtons from "@/components/MenuButtons";
+
+const Menu = () => {
+    const { filteredDishes, getDishesByType } = useMenu();
+    const [selectedType, setSelectedType] = useState("entrantes");
+    const [displayDishes, setDisplayDishes] = useState([]);
+
+    // Cargar los platos según el tipo seleccionado
+    useEffect(() => {
+        if (selectedType) {
+            getDishesByType(selectedType);
+        }
+    }, [selectedType]);
+
+    // Actualizar displayDishes con los platos filtrados
+    useEffect(() => {
+        setDisplayDishes(filteredDishes || []);
+    }, [filteredDishes]);
+
+    return (
+        <>
+            <TopPictures />
+            <MenuButtons setType={setSelectedType} />
+
+            <section className="menu-flex">
+                <h2 className="dish-h2">{selectedType}</h2>
+                <div className="menu-grid">
+                    {displayDishes.map(dish => (
+                        <MenuCard key={dish._id} {...dish} />
+                    ))}
+                </div>
+            </section>
+        </>
+    );
+};
+
+export default Menu;
+```
+```jsx components/MenuCard.jsx
+const MenuCard = ({ _id, name, description, price }) => {
+    return (
+        <article className="menu-card">
+            <div className="card">
+                <h3 className="card-title">{name}</h3>
+                <p className="card-price">{price}</p>
+            </div>
+            <p className="card-desc">{description}</p>
+        </article>
+    );
+}
+
+export default MenuCard;
+```
+```jsx components/MenuButtons.jsx
+const MenuButtons = ({ setType }) => {
+    const types = ["entrantes", "arroces", "pescados", "carnes", "postres", "bebidas", "vinos"];
+
+    return (
+        <section className="menu-buttons">
+            {types.map((type, index) => (
+                <button key={index} onClick={() => setType(type)} className="menu-button">
+                    {type === null ? "Menu" : type}
+                </button>
+            ))}
+        </section>
+    );
+};
+
+export default MenuButtons;
+```
+```jsx components/MenuCard.jsx
+const MenuCard = ({ _id, name, description, price }) => {
+    return (
+        <article className="menu-card">
+            <div className="card">
+                <h3 className="card-title">{name}</h3>
+                <p className="card-price">{price}</p>
+            </div>
+            <p className="card-desc">{description}</p>
+        </article>
+    );
+}
+
+export default MenuCard;
+```

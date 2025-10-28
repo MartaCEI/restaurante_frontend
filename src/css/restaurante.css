@@ -7,41 +7,51 @@
     padding: 0;
 }
 
-html, body, #root {
+html,
+body,
+#root {
     width: 100%;
     min-height: 100%;
     background-color: #e2e2e2;
     overflow-x: hidden;
 }
 
-img, video, iframe, table {
+img,
+video,
+iframe,
+table {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
-.flex, .grid {
+.flex,
+.grid {
     max-width: 100%;
     overflow-x: hidden;
 }
 
 /* Textos largos o palabras sin espacios */
 * {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    /* word-wrap: break-word;
+    overflow-wrap: break-word; */
     min-width: 0;
 }
 
 /* Contenido general dentro de contenedores */
-* > * {
+*>* {
     max-width: 100%;
     box-sizing: border-box;
 }
 
 /* Slider, tablas o contenido gigante */
-.slider, .slider > *, table, table * {
+.slider,
+.slider>*,
+table,
+table * {
     max-width: 100%;
-    overflow-x: auto; /* permite scroll interno solo si es necesario */
+    overflow-x: auto;
+    /* permite scroll interno solo si es necesario */
 }
 
 /* ----- Contenedor principal ----- */
@@ -59,13 +69,11 @@ img, video, iframe, table {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    padding: 2rem;
     overflow-x: hidden;
 }
 
-.main > * {
+.main>* {
     max-width: 100%;
 }
-
