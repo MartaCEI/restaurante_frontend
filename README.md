@@ -1052,17 +1052,18 @@ fetchAdminData();
 ```
 
 # 2ª Fase del Frontend del Proyecto Restaurante
+En esta fase vamos a crear el contexto y las funcionalidades para gestionar el menú del restaurante y las operaciones administrativas.
 
 ## Lista de tareas frontend
 - [x] Crear hook personalizado `hooks/useMenu.jsx` para gestionar el estado del menú y las operaciones relacionadas.
 - [x] Abrazar el main.jsx con el MenuProvider para que toda la app tenga acceso al menú.
 - [x] Crear la funcionalidad de fetch para obtener el menú desde el backend y guardarlo en el contexto del menú.
 - [x] Mostrar el menú dinámicamente en la página Menu utilizando los datos del contexto del menú.
-- [ ] Implementar la funcionalidad de añadir productos al carrito desde la página Menu.
 - [ ] Implementar la funcionalidad de carga de imágenes en el backend y conectar con el frontend.
 - [ ] Crear hook personalizado `hooks/useAdmin.jsx` para gestionar las operaciones administrativas y rutas privadas.
-- [ ] Implementar la funcionalidad de gestión del menú en la página Admin (CRUD de platos).
-- [ ] Implementar la funcionalidad de gestión de pedidos en la página Admin (ver y actualizar el estado de los pedidos).
+- [ ] Abrazar el main.jsx con el AdminProvider para que toda la app tenga acceso a las funciones administrativas.
+- [ ] Actualizacion del componente Header para mostrar opciones de admin si el usuario es admin.
+- [ ] Implementar la funcionalidad de gestión del menú en la página Admin (CRUD).
 
 1. Crear hook personalizado `hooks/useMenu.jsx` para gestionar el estado del menú y las operaciones relacionadas.
 ```js
@@ -1267,4 +1268,22 @@ const MenuCard = ({ _id, name, description, price }) => {
 }
 
 export default MenuCard;
+```
+
+5. Multer
+
+6. Crear hook personalizado `hooks/useAdmin.jsx` para gestionar las operaciones administrativas y rutas privadas.
+```js
+const AdminContext = createContext();
+
+export const AdminProvider = ({children}) => {
+
+    return (
+        <AdminContext.Provider value={{}}>
+            {children}
+        </AdminContext.Provider>
+    )
+}
+
+export const useAdmin = () => useContext(AdminContext);
 ```

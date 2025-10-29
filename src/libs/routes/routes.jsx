@@ -4,13 +4,15 @@ import Home from "@/pages/Home";
 import Menu from "@/pages/Menu";
 import TakeOut from "@/pages/TakeOut";
 import Events from "@/pages/Events";
-import Reservations from "@/pages/Reservations";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import Cart from "@/pages/Cart";
-import Admin from "@/pages/Admin";
 import IndividualProduct from "@/pages/IndividualProduct";
 import ErrorPage from "@/ErrorPage";
+import AdminUsers from "@/pages/AdminUsers";
+import AdminMenu from "@/pages/AdminMenu";
+import AdminEvents from "@/pages/AdminEvents";
+import AdminOrders from "@/pages/AdminOrders";
 
 const router = createBrowserRouter([{
     path: "/",
@@ -21,40 +23,48 @@ const router = createBrowserRouter([{
             element: <Home />
         },
         {
-            path: "/menu",
+            path: "menu",
             element: <Menu />
         },
         {
-            path: "/takeOut",
+            path: "takeOut",
             element: <TakeOut />
         },
         {
-            path: "/events",
+            path: "events",
             element: <Events />
         },
         {
-            path: "/reservations",
-            element: <Reservations />
-        },
-        {
-            path: "/login",
+            path: "login",
             element: <Login />
         },
         {
-            path: "/register",
+            path: "register",
             element: <Register />
         },
         {
-            path: "/cart",
+            path: "cart",
             element: <Cart />
         },
         {
-            path: "/admin",
-            element: <Admin />
+            path: "menu/:id",
+            element: <IndividualProduct />
         },
         {
-            path: "/menu/:id",
-            element: <IndividualProduct />
+            path: "admin/users",
+            element: <AdminUsers />
+        },
+        {
+            path: "admin/menu",
+            element: <AdminMenu />
+        },
+        {
+            path: "admin/events",
+            element: <AdminEvents />
+        },
+        {
+            path: "admin/orders",
+            element: <AdminOrders />
         },
         {
             path: "*",

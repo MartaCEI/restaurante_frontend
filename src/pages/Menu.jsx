@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useMenu } from "@/hooks/useMenu";
 import TopPictures from "@/components/TopPictures";
-import MenuCard from "@/components/MenuCard";
-import MenuButtons from "@/components/MenuButtons";
+import MenuCard from "@/components/menu/MenuCard";
+import MenuButtons from "@/components/menu/MenuButtons";
 
 const Menu = () => {
     const { filteredDishes, getDishesByType } = useMenu();
