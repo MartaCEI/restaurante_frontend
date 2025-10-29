@@ -12,7 +12,7 @@ export const MenuProvider = ({ children }) => {
     const [error, setError] = useState(null);
 
     // router.get('/dishes/id/:id', getDishById) // getDishById(id)
-    const getDishById = async (dishId) => {
+    const getSingleDish = async (dishId) => {
         try {
             const res = await fetch(`${urlBackend}/dishes/id/${dishId}`);
             const response = await res.json();
@@ -41,8 +41,13 @@ export const MenuProvider = ({ children }) => {
                 setFilteredDishes(null)
                 console.log("[getDishesByType]: Platos encontrados:", response);
             }
-            setFilteredDishes(response.data);
+
+            // Filtrar solo los platos activos
+            const activeDishes = response.data.filter(dish => !dish.deletedAt);
+
+            setFilteredDishes(activeDishes);
             setError(null);
+            console.log("[getDishesByType]: Platos activos encontrados:", activeDishes);
         } catch (error) {
             console.log("[getDishesByType]: Error:", error);
             setError("Hubo un error al obtener los platos.");
@@ -55,7 +60,7 @@ export const MenuProvider = ({ children }) => {
             filteredDishes,
             singleDish,
             error,
-            getDishById,
+            getSingleDish,
             getDishesByType
         }}>
             {children}

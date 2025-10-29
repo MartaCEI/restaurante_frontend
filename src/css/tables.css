@@ -8,6 +8,13 @@
     gap: 2rem;
 }
 
+.tables-create {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1rem;
+    align-items: center;
+}
+
 /* ----- Tabla ----- */
 .table {
     width: auto; /* Ajusta según el contenido */
