@@ -11,6 +11,9 @@ const AdminHeader = ({user}) => {
             <nav className="nav">
                 <ul className="nav-ul">
                     <li className="nav-li">
+                        <NavLink to="/" className="nav-a">HOME</NavLink>
+                    </li>
+                    <li className="nav-li">
                         <NavLink to="/admin/users" className="nav-a">USERS</NavLink>
                     </li>
                     <li className="nav-li">
@@ -24,9 +27,9 @@ const AdminHeader = ({user}) => {
                     </li>
                 </ul>
             </nav>
-            <div className="social">
+            <div className="header-buttons">
                 <p>Admin: {user.name}</p>
-                <Link onClick={logout} className="social-button">Salir</Link>
+                <Link onClick={logout} className="header-button">Salir</Link>
             </div>
         </div>
     );

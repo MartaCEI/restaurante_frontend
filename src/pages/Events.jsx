@@ -1,7 +1,9 @@
+import TopPictures from "@/components/TopPictures";
+
 const Events = () => {
     return (
         <>
-            Estoy en Events.
+            <TopPictures />
         </>
     );
 }

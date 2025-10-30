@@ -127,8 +127,6 @@ const Register = () => {
             ) : (
                 <button className="button disabled" disabled>Registrarse</button>
             )}
-
-            <pre>{JSON.stringify(newUser, null, 2)}</pre>
         </form>
     );
 };

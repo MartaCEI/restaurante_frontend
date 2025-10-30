@@ -33,11 +33,22 @@
 }
 
 .dish-h2 {
+    box-sizing: border-box;
+    display: block;
+    width: 445px;            /* ancho fijo como en Marlowe */
+    height: 52.6px;          /* altura aproximada */
+    margin: 0 auto 2rem auto;/* centrado horizontal y margen inferior */
+    padding: 4px 0;          /* padding vertical */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 39.6px;
     text-transform: uppercase;
-    width: 14rem;
-    border-bottom: 1px solid black;
-    border-top: 1px solid black;
-    padding: 0.5rem;
+    text-align: left;
+    color: #000;
+    border-top: 3px solid #000;
+    border-bottom: 2px solid #000;
+    -webkit-font-smoothing: antialiased;
 }
 
 .menu-grid {

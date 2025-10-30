@@ -14,7 +14,7 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         login(formData);
-        navigate("/takeOut")
+        navigate("/")
     }
 
     const handleOnChange = (e) => {
@@ -47,7 +47,6 @@ const Login = () => {
                     required/>
             </label>
             <button className="button" type="submit">LogIn</button>
-            <pre>{JSON.stringify(formData, null, 2)}</pre>
             <p>Todavia no tienes cuenta</p>
             <Link to="/register" type="button" className="button">Regítrate</Link>
         </form>

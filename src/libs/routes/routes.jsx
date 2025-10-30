@@ -7,12 +7,12 @@ import Events from "@/pages/Events";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import Cart from "@/pages/Cart";
-import IndividualProduct from "@/pages/IndividualProduct";
 import ErrorPage from "@/ErrorPage";
 import AdminUsers from "@/pages/AdminUsers";
 import AdminMenu from "@/pages/AdminMenu";
 import AdminEvents from "@/pages/AdminEvents";
 import AdminOrders from "@/pages/AdminOrders";
+import Summary from "@/pages/Summary";
 
 const router = createBrowserRouter([{
     path: "/",
@@ -47,8 +47,8 @@ const router = createBrowserRouter([{
             element: <Cart />
         },
         {
-            path: "menu/:id",
-            element: <IndividualProduct />
+            path: "summary",
+            element: <Summary />
         },
         {
             path: "admin/users",

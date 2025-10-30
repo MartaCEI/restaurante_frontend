@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-        <div className="footer">
-            <div className="footer-container">
+
+        <div className="footer-container">
+            <div className="footer-line"></div>
+            <div className="footer-inner">
                 <div className="footer-right">
                     <p className="footer-title">Visit us:</p>
                     <p className="footer-content">Calle Mi Calle 8</p>

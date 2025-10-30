@@ -9,29 +9,19 @@ const MainHeader = () => {
             <nav className="nav">
                 <ul className="nav-ul">
                     <li className="nav-li">
-                        <NavLink to="/menu" className="nav-a">MENU</NavLink>
+                        <NavLink to="/" className="nav-a">HOME</NavLink>
                     </li>
                     <li className="nav-li">
-                        <NavLink to="/reservations" className="nav-a">RESERVAS</NavLink>
+                        <NavLink to="/menu" className="nav-a">MENU</NavLink>
                     </li>
                     <li className="nav-li">
                         <NavLink to="/events" className="nav-a">EVENTOS</NavLink>
                     </li>
                 </ul>
             </nav>
-            <div className="social">
-                <ul className="social-ul">
-                    <li className="social-li">
-                        <img src={logo} alt="Facebook" className="social-img" />
-                    </li>
-                    <li className="social-li">
-                        <img src={logo} alt="Tweeter" className="social-img" />
-                    </li>
-                    <li className="social-li">
-                        <img src={logo} alt="Instagram" className="social-img" />
-                    </li>
-                </ul>
-                <Link to="/login" className="social-button">TakeOut</Link>
+            <div className="header-buttons">
+                <Link to="/login" className="header-button">TakeOut</Link>
+                <Link to="/login" className="header-button">Login</Link>
             </div>
         </div>
     );

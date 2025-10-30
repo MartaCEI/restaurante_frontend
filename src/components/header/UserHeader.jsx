@@ -10,10 +10,10 @@ const UserHeader = ({user}) => {
             <nav className="nav">
                 <ul className="nav-ul">
                     <li className="nav-li">
-                        <NavLink to="/menu" className="nav-a">MENU</NavLink>
+                        <NavLink to="/menu" className="nav-a">Home</NavLink>
                     </li>
                     <li className="nav-li">
-                        <NavLink to="/reservations" className="nav-a">RESERVAS</NavLink>
+                        <NavLink to="/menu" className="nav-a">MENU</NavLink>
                     </li>
                     <li className="nav-li">
                         <NavLink to="/events" className="nav-a">EVENTOS</NavLink>
@@ -23,10 +23,10 @@ const UserHeader = ({user}) => {
                     </li>
                 </ul>
             </nav>
-            <div className="social">
+            <div className="header-buttons">
                 <p>{user.name}</p>
-                <Link to="/cart" className="social-button">carrito</Link>
-                <Link onClick={logout} className="social-button">Salir</Link>
+                <Link to="/cart" className="header-button">carrito</Link>
+                <Link onClick={logout} className="header-button">Salir</Link>
             </div>
         </div>
     );

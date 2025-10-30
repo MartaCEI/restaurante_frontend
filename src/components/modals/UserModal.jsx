@@ -4,32 +4,31 @@ import Select from "@/components/forms/Select";
 
 const UserModal = ({ isOpen, onClose, onSubmit, initialData, isAdminList }) => {
     const [formData, setFormData] = useState(initialData);
-    const [errores, setErrores] = useState({});
+    const [errors, setErrors] = useState({});
 
     useEffect(() => {
         setFormData(initialData);
-        setErrores({});
+        setErrors({});
     }, [initialData]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
-        setErrores(prev => ({ ...prev, [name]: "" }));
+        setErrors(prev => ({ ...prev, [name]: "" }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const newErrors = {};
-
-        if (!formData.name.trim()) newErrors.name = "El nombre es obligatorio";
-        if (!formData.username.trim()) newErrors.username = "El email es obligatorio";
-        if (!formData.street.trim()) newErrors.street = "La calle es obligatoria";
-        if (!formData.city.trim()) newErrors.city = "La ciudad es obligatoria";
-        if (!formData.cp.trim()) newErrors.cp = "El código postal es obligatorio";
-        if (!formData.isAdmin) newErrors.isAdmin = "Debes seleccionar uno";
+        if (!formData.name?.trim()) newErrors.name = "El nombre es obligatorio";
+        if (!formData.username?.trim()) newErrors.username = "El email es obligatorio";
+        if (!formData.street?.trim()) newErrors.street = "La calle es obligatoria";
+        if (!formData.city?.trim()) newErrors.city = "La ciudad es obligatoria";
+        if (!formData.cp?.trim()) newErrors.cp = "El código postal es obligatorio";
+        if (formData.isAdmin === undefined || formData.isAdmin === null) newErrors.isAdmin = "Debes seleccionar uno";
 
         if (Object.keys(newErrors).length > 0) {
-            setErrores(newErrors);
+            setErrors(newErrors);
             return;
         }
 
@@ -43,21 +42,15 @@ const UserModal = ({ isOpen, onClose, onSubmit, initialData, isAdminList }) => {
             <div className="modal-content">
                 <h2 className="modal-h2">{formData._id ? "Editar Usuario" : "Nuevo Usuario"}</h2>
 
-                <Input name="name" label="Nombre:" type="text" value={formData.name} onChange={handleChange} error={errores.name} />
-                <Input name="username" label="Email:" type="email" value={formData.username} onChange={handleChange} error={errores.username} />
-                <Input name="street" label="Calle:" type="text" value={formData.street} onChange={handleChange} error={errores.street} />
-                <Input name="city" label="Ciudad:" type="text" value={formData.city} onChange={handleChange} error={errores.city} />
-                <Input name="cp" label="Código Postal:" type="text" value={formData.cp} onChange={handleChange} error={errores.cp} />
+                <div className="modal-body">
+                    <Input className="modal-input" name="name" label="Nombre:" type="text" value={formData.name} onChange={handleChange} error={errors.name} />
+                    <Input className="modal-input" name="username" label="Email:" type="email" value={formData.username} onChange={handleChange} error={errors.username} />
+                    <Input className="modal-input" name="street" label="Calle:" type="text" value={formData.street} onChange={handleChange} error={errors.street} />
+                    <Input className="modal-input" name="city" label="Ciudad:" type="text" value={formData.city} onChange={handleChange} error={errors.city} />
+                    <Input className="modal-input" name="cp" label="Código Postal:" type="text" value={formData.cp} onChange={handleChange} error={errors.cp} />
 
-                <Select
-                    name="isAdmin"
-                    label="Administrador"
-                    firstOptionLabel="Selecciona una opción"
-                    value={formData.isAdmin}
-                    onChange={handleChange}
-                    lista={isAdminList}
-                    error={errores.isAdmin}
-                />
+                    <Select className="modal-select" name="isAdmin" label="Administrador" value={formData.isAdmin} onChange={handleChange} lista={isAdminList} firstOptionLabel="Selecciona una opción" error={errors.isAdmin} />
+                </div>
 
                 <div className="modal-buttons">
                     <button className="button cancel" onClick={onClose}>Cancelar</button>

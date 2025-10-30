@@ -1,14 +1,14 @@
 import { Outlet } from "react-router-dom";
 import Footer from "@/components/Footer";
 import Header from "@/components/header/Header";
-import '@/css/cabeceras.css'
-import '@/css/menu.css'
+import brickWall from './assets/images/brick-wall.jpg';
+
 
 function Layout() {
 
 
   return (
-    <div className="container">
+    <div className="container" style={{ backgroundImage: `url(${brickWall})` }}>
       <Header />
       <main className="main">
         <Outlet />

@@ -1,0 +1,232 @@
+/* ---------- TAKEOUT ---------- */
+.takeout-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    background-color: #e2e2e2;
+}
+
+.takeout-title {
+    text-transform: uppercase;
+    border-bottom: 1px solid #333;
+    border-top: 1px solid #333;
+    padding: 0.5rem 0;
+    width: 14rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.takeout-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 62rem;
+}
+
+/* ---------- TAKEOUT CARD ---------- */
+.menu-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 1rem;
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.menu-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+}
+
+.card-title {
+    flex: 1;
+}
+
+.card-price {
+    color: rgb(185, 119, 32);
+    font-weight: 700;
+}
+
+.card-desc {
+    font-size: 0.95rem;
+    color: #444;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: 600;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.counter span {
+    background-color: burlywood;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.5rem;
+}
+
+.button {
+    background-color: burlywood;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.button:hover {
+    background-color: rgb(180, 140, 80);
+}
+
+/* ---------- CART PAGE ---------- */
+.cart-container {
+    max-width: 62rem;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.cart-container h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.cart-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.cart-list li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 0.75rem 0;
+    font-weight: 500;
+}
+
+.cart-list button {
+    margin-left: 0.5rem;
+    background-color: burlywood;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.3rem 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.cart-list button:hover {
+    background-color: rgb(180, 140, 80);
+}
+
+.cart-totals {
+    text-align: right;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.cart-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.cart-actions button {
+    background-color: burlywood;
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.cart-actions button:hover {
+    background-color: rgb(180, 140, 80);
+}
+
+.cart-actions a {
+    color: #333;
+    text-decoration: underline;
+}
+
+/* ---------- SUMMARY PAGE ---------- */
+.summary {
+    max-width: 48rem;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.summary h2 {
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.summary li {
+    border-bottom: 1px solid #ddd;
+    padding: 0.75rem 0;
+}
+
+.summary h3 {
+    margin-top: 1.5rem;
+    color: rgb(185, 119, 32);
+}
+
+.summary button {
+    background-color: burlywood;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.summary button:hover {
+    background-color: rgb(180, 140, 80);
+}

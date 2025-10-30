@@ -25,9 +25,8 @@ const Menu = () => {
         <>
             <TopPictures />
             <MenuButtons setType={setSelectedType} />
-
             <section className="menu-flex">
-                <h2 className="dish-h2">{selectedType}</h2>
+                <h2 className="menu-h2">{selectedType}</h2>
                 <div className="menu-grid">
                     {displayDishes.map(dish => (
                         <MenuCard key={dish._id} {...dish} />
