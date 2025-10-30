@@ -6,11 +6,12 @@ export const AdminProvider = ({ children }) => {
     const urlBackend = import.meta.env.VITE_BACKEND_URL;
     const urlStatic = import.meta.env.VITE_STATIC_URL;
     const [dishes, setDishes] = useState(null);
+    const [events, setEvents] = useState(null);
     const [dish, setDish] = useState(null)
     const [users, setUsers] = useState(null);
     const [error, setError] = useState(null)
 
-    // Users CRUD
+    // ***************  USERS CRUD *******************
     // router.get('/admin/users', authMiddleware, getAllUsers); // getAllUsers()
     const getAllUsers = async () => {
         try {
@@ -19,26 +20,91 @@ export const AdminProvider = ({ children }) => {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json",
-                    "Authorization": `Bearer ${token}` // Enviar el token JWT en el header
-                }
+                    "Authorization": `Bearer ${token}`,
+                },
             });
+
             const response = await res.json();
-            if (response.status === "error") {
-                setError(response.msg);
-                setUsers(null);
-                return;
-            }
+            if (response.status === "error") throw new Error(response.msg);
+
             setUsers(response.data);
             setError(null);
-            console.log("[getAllUsers] Usuarios encontrados:", response);
         } catch (error) {
-            console.log("[getAllUsers] Error:", error);
+            console.error("[getAllUsers] Error:", error);
             setError("Hubo un error al obtener los usuarios.");
-            setUsers(null);
+            setUsers([]);
         }
-    }
+    };
 
-    // Menu: CRUD
+    const getUserById = async (userId) => {
+        try {
+            const token = localStorage.getItem("token");
+            const res = await fetch(`${urlBackend}/admin/users/${userId}`, {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+            });
+
+            const response = await res.json();
+            if (response.status === "error") throw new Error(response.msg);
+
+            return response.data;
+        } catch (error) {
+            console.error("[getUserById] Error:", error);
+            setError("Hubo un error al obtener el usuario.");
+            return null;
+        }
+    };
+
+    const updateUser = async (id, newData) => {
+        try {
+            const token = localStorage.getItem("token");
+            const res = await fetch(`${urlBackend}/admin/users/${id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify(newData),
+            });
+
+            const response = await res.json();
+            if (response.status === "error") throw new Error(response.msg);
+
+            await getAllUsers();
+            setError(null);
+        } catch (error) {
+            console.error("[updateUser] Error:", error);
+            setError("Error al actualizar el usuario.");
+        }
+    };
+
+    const deleteUserPermanently = async (id) => {
+        try {
+            const token = localStorage.getItem("token");
+            const res = await fetch(`${urlBackend}/admin/users/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+            });
+
+            const response = await res.json();
+            if (response.status === "error") throw new Error(response.msg);
+
+            await getAllUsers();
+            setError(null);
+        } catch (error) {
+            console.error("[deleteUserPermanently] Error:", error);
+            setError("Error al borrar el usuario.");
+        }
+    };
+
+
+    // ***************  Menu CRUD *******************
     // router.get('/admin/dishes',authMiddleware, getAllDishes) // getAllDishes()
     const getAllDishes = async () => {
         try {
@@ -69,6 +135,7 @@ export const AdminProvider = ({ children }) => {
     useEffect(() => {
         getAllDishes();
         getAllUsers();
+        getAllEventsAdmin();
     }, []);
 
     // router.post('admin/dishes', authMiddleware, createDish) // createDish(dishData)
@@ -190,10 +257,129 @@ export const AdminProvider = ({ children }) => {
             setError("Error al borrar el plato");
         }
     }
-    //     // ORDERS: CRUD
+
+    // ***************  EVENTS CRUD *******************
+    const getAllEventsAdmin = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const res = await fetch(`${urlBackend}/admin/events`, {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+            });
+
+            const response = await res.json();
+            if (response.status === "error") throw new Error(response.msg);
+
+            setEvents(response.data);
+            setError(null);
+        } catch (error) {
+            console.error("[getAllEventsAdmin] Error:", error);
+            setError("Hubo un error al obtener los eventos.");
+            setEvents([]);
+        }
+    };
+
+    const getEventById = async (eventId) => {
+        try {
+            const token = localStorage.getItem("token");
+            const res = await fetch(`${urlBackend}/admin/events/${eventId}`, {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+            });
+
+            const response = await res.json();
+            if (response.status === "error") throw new Error(response.msg);
+
+            return response.data;
+        } catch (error) {
+            console.error("[getEventById] Error:", error);
+            setError("Hubo un error al obtener el evento.");
+            return null;
+        }
+    };
+
+    const createEvent = async (eventData) => {
+    try {
+        const token = localStorage.getItem("token");
+        const res = await fetch(`${urlBackend}/admin/events`, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+                "Authorization": `Bearer ${token}`,
+            },
+            body: JSON.stringify(eventData),
+        });
+
+        const response = await res.json();
+        if (response.status === "error") throw new Error(response.msg);
+
+        await getAllEventsAdmin(); // refresca la lista
+        setError(null);
+    } catch (error) {
+        console.error("[createEvent] Error:", error);
+        setError("Error al crear el evento.");
+    }
+};
+
+    const updateEvent = async (id, newData) => {
+        try {
+            const token = localStorage.getItem("token");
+            const res = await fetch(`${urlBackend}/admin/events/${id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify(newData),
+            });
+
+            const response = await res.json();
+            if (response.status === "error") throw new Error(response.msg);
+
+            await getAllEventsAdmin(); // refresca la lista de eventos
+            setError(null);
+        } catch (error) {
+            console.error("[updateEvent] Error:", error);
+            setError("Error al actualizar el evento.");
+        }
+    };
+
+    // Soft delete de un evento
+    const softDeleteEvent = async (id) => {
+        try {
+            const token = localStorage.getItem("token");
+            const res = await fetch(`${urlBackend}/admin/events/deletedAt/${id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+
+            const response = await res.json();
+            if (response.status === "ok") {
+                getAllEventsAdmin(); 
+            } else {
+                console.error(response.msg);
+            }
+        } catch (error) {
+            setError("Error al eliminar el evento.");
+        }
+    };
 
     return (
-        <AdminContext.Provider value={{ users, dishes, error, createDish, updateDish, deleteDish, getDishById, softDeleteDish }}>
+        <AdminContext.Provider value={{
+            users, dishes, dish, events, error,
+            getDishById, updateDish, softDeleteDish, createDish,
+            getUserById, updateUser, deleteUserPermanently,
+            getEventById, updateEvent, softDeleteEvent, createEvent
+        }}>
             {children}
         </AdminContext.Provider>
     )

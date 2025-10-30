@@ -1,6 +1,12 @@
-
 const Table = ({ data, columns, onUpdate, onDelete }) => {
-    if (!data || data.length === 0) return <p>No hay datos disponibles</p>;
+    if (!data || data.length === 0) return <p>No hay información disponible</p>;
+
+    // Separar activos y soft deleted
+    const activeItems = data.filter(item => !item.deletedAt);
+    const deletedItems = data.filter(item => item.deletedAt);
+
+    // Unir con los eliminados al final
+    const sortedData = [...activeItems, ...deletedItems];
 
     return (
         <table className="table">
@@ -11,19 +17,25 @@ const Table = ({ data, columns, onUpdate, onDelete }) => {
                 </tr>
             </thead>
             <tbody>
-                {data.map(item => (
+                {sortedData.map(item => (
                     <tr
                         key={item._id}
                         className="table-tr"
                         style={{
                             color: item.deletedAt ? "gray" : "black",
-                            textDecoration: item.deletedAt ? "line-through" : "none"
+                            textDecoration: item.deletedAt ? "line-through" : "none",
                         }}
                     >
-                        {columns.map(col => <td key={col} className="table-td">{item[col] || ""}</td>)}
+                        {columns.map(col => (
+                            <td key={col} className="table-td">{item[col] || ""}</td>
+                        ))}
                         <td className="table-td">
-                            {!item.deletedAt && <button className="button" onClick={() => onUpdate(item._id)}>Update</button>}
-                            {!item.deletedAt && <button className="button delete" onClick={() => onDelete(item._id)}>Eliminar</button>}
+                            {!item.deletedAt && (
+                                <>
+                                    <button className="button" onClick={() => onUpdate(item._id)}>Actualizar</button>
+                                    <button className="button delete" onClick={() => onDelete(item._id)}>Eliminar</button>
+                                </>
+                            )}
                         </td>
                     </tr>
                 ))}

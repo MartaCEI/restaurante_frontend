@@ -5,6 +5,7 @@ import { useAdmin } from "@/hooks/useAdmin";
 
 const AdminMenu = () => {
     const { dishes, createDish, updateDish, getDishById, softDeleteDish } = useAdmin();
+    
     const typeList = [
         { value: "entrantes", label: "entrantes" },
         { value: "arroces", label: "arroces" },

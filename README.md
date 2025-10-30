@@ -1060,10 +1060,10 @@ En esta fase vamos a crear el contexto y las funcionalidades para gestionar el m
 - [x] Crear la funcionalidad de fetch para obtener el menú desde el backend y guardarlo en el contexto del menú.
 - [x] Mostrar el menú dinámicamente en la página Menu utilizando los datos del contexto del menú.
 - [ ] Implementar la funcionalidad de carga de imágenes en el backend y conectar con el frontend.
-- [ ] Crear hook personalizado `hooks/useAdmin.jsx` para gestionar las operaciones administrativas y rutas privadas.
-- [ ] Abrazar el main.jsx con el AdminProvider para que toda la app tenga acceso a las funciones administrativas.
-- [ ] Actualizacion del componente Header para mostrar opciones de admin si el usuario es admin.
-- [ ] Implementar la funcionalidad de gestión del menú en la página Admin (CRUD).
+- [x] Actualizacion del componente Header para mostrar opciones de admin si el usuario es admin.
+- [x] Crear hook personalizado `hooks/useAdmin.jsx` para gestionar las operaciones administrativas y rutas privadas.
+- [x] Abrazar el main.jsx con el AdminProvider para que toda la app tenga acceso a las funciones administrativas.
+- [x] Implementar la funcionalidad de gestión del menú en la página Admin. CRUD de platos, de usuarios, de eventos y pedidos.
 
 1. Crear hook personalizado `hooks/useMenu.jsx` para gestionar el estado del menú y las operaciones relacionadas.
 ```js
@@ -1222,21 +1222,6 @@ const Menu = () => {
 
 export default Menu;
 ```
-```jsx components/MenuCard.jsx
-const MenuCard = ({ _id, name, description, price }) => {
-    return (
-        <article className="menu-card">
-            <div className="card">
-                <h3 className="card-title">{name}</h3>
-                <p className="card-price">{price}</p>
-            </div>
-            <p className="card-desc">{description}</p>
-        </article>
-    );
-}
-
-export default MenuCard;
-```
 ```jsx components/MenuButtons.jsx
 const MenuButtons = ({ setType }) => {
     const types = ["entrantes", "arroces", "pescados", "carnes", "postres", "bebidas", "vinos"];
@@ -1272,8 +1257,35 @@ export default MenuCard;
 
 5. Multer
 
+6. Actualizacion del componente Header para mostrar opciones de admin si el usuario es admin.
+El header cambia segun si el user no existe, existe o es admin.  Y cada opción tiene su propio nav.
+```js
+const Header = () => {
+    const { user, logout } = useUser();
+    // const navigate = useNavigate();
+    return (
+        <header className="header">
+            <div className="header-container">
+                <div className="header-imgdiv">
+                    <img src={logo} alt="logo" className="header-img" />
+                </div>
+
+                {/* Segun si el User existe, no existe o es Admin enseña un nav diferente.  */}
+                {!user && <MainHeader />}
+                {(user && !user.admin) && <UserHeader user={user} />}
+                {(user && user.admin) && <AdminHeader user={user} />}
+            </div>
+        </header>
+    );
+}
+
+export default Header;
+```
+
 6. Crear hook personalizado `hooks/useAdmin.jsx` para gestionar las operaciones administrativas y rutas privadas.
 ```js
+import { createContext, useContext } from "react";
+
 const AdminContext = createContext();
 
 export const AdminProvider = ({children}) => {
@@ -1286,4 +1298,357 @@ export const AdminProvider = ({children}) => {
 }
 
 export const useAdmin = () => useContext(AdminContext);
+```
+
+7. Abrazar el main.jsx con el AdminProvider para que toda la app tenga acceso a las funciones administrativas.
+```js
+import { AdminProvider } from "@/hooks/useAdmin";
+--- IGNORE ---
+    <UserProvider>
+        <MenuProvider>
+            <AdminProvider>
+                <RouterProvider router={router} />
+            </AdminProvider>
+        </MenuProvider>     
+    </UserProvider>
+--- IGNORE ---
+```
+
+8. Fincionalidad de fetch para las operaciones administrativas en useAdmin.jsx
+```js
+const urlBackend = import.meta.env.VITE_BACKEND_URL;
+    // Menu: CRUD
+    // router.get('/admin/dishes',authMiddleware, getAllDishes) // getAllDishes()
+    const getAllDishes = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const res = await fetch(`${urlBackend}/admin/dishes`, {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": `Bearer ${token}` // Enviar el token JWT en el header
+                }
+            });
+            const response = await res.json();
+            if (response.status === "error") {
+                setError(response.msg);
+                setDishes(null);
+                return;
+            }
+            setDishes(response.data);
+            setError(null);
+            console.log("[getAllDishes] Platos encontrados:", response);
+        } catch (error) {
+            console.log("[getAllDishes] Error:", error);
+            setError("Hubo un error al obtener los platos.");
+            setDishes(null);
+        }
+    }
+
+    useEffect(() => {
+        getAllDishes();
+        getAllUsers();
+    }, []);
+
+    // router.post('admin/dishes', authMiddleware, createDish) // createDish(dishData)
+    const createDish = async (newDish) => {
+        try {
+            const token = localStorage.getItem("token");
+            const res = await fetch(`${urlBackend}/admin/dishes`, {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify(newDish),
+            });
+            const response = await res.json();
+
+            if (response.status === "error") {
+                setError(response.msg);
+                setDish(null);
+                return;
+            };
+            // El backend se encarga de guardar el nuevo plato en la BBDD. 
+            setDish(response.data);
+            setError(null);
+            getAllDishes();
+        } catch (error) {
+            setError("Hubo un error al intentar crear el plato.");
+            setDish(null);
+        }
+    }
+
+    // router.get('/admin/dishes/id/:id', authMiddleware, getDishById); // getDishById(id)
+    const getDishById = async (dishId) => {
+        try {
+            const token = localStorage.getItem("token");
+            const res = await fetch(`${urlBackend}/admin/dishes/${dishId}`, {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+            const response = await res.json();
+            if (response.status === "error") throw new Error(response.msg);
+            return response.data; // Retorna los datos para el frontend
+        } catch (error) {
+            console.error("[getDishById] Error:", error);
+            setError("Hubo un error al obtener el plato.");
+            return null;
+        }
+    };
+
+    // router.patch('/admin/dishes/deletedAt/:id', authMiddleware, updateDishdeletedAt) // updateDish(id)
+    const softDeleteDish = async (id) => {
+        try {
+            const token = localStorage.getItem("token");
+            const res = await fetch(`${urlBackend}/admin/dishes/deletedAt/${id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+            const response = await res.json();
+            if (response.status === "ok") {
+                getAllDishes(); // refresca la tabla
+            } else {
+                console.error(response.msg);
+            }
+        } catch (error) {
+            setError("Error al actualizar el plato");
+        }
+    }
+
+    // router.patch('/admin/dishes/:id', authMiddleware, updateDish) // updateDish(id, dishData)
+    const updateDish = async (id, newData) => {
+        try {
+            const token = localStorage.getItem("token");
+            const res = await fetch(`${urlBackend}/admin/dishes/${id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify(newData),
+            });
+
+            const response = await res.json();
+            if (response.status === "error") {
+                setError(response.msg);
+                return;
+            }
+            getAllDishes();
+            setError(null);
+        } catch (error) {
+            setError("Error al actualizar el plato");
+        }
+    }
+``` 
+
+8. Implementar la funcionalidad de gestión del menú en la página Admin. CRUD de platos, de usuarios, de eventos y pedidos.
+El admin va a tener 4 apartados que hacen lo mismo pero con diferentes datos. Platos, Usuarios, Eventos y Pedidos. Es reutilizabe y posee dos componentes hijos: Table.jsx(comun a todas la páginas de admin) y un modal para crear o editar los datos: AdminModal.jsx
+```js pages/AdminMenu.jsx
+const AdminMenu = () => {
+    const { dishes, createDish, updateDish, getDishById, softDeleteDish } = useAdmin();
+    const typeList = [
+        { value: "entrantes", label: "entrantes" },
+        { value: "arroces", label: "arroces" },
+        { value: "pescados", label: "pescados" },
+        { value: "carnes", label: "carnes" },
+        { value: "postres", label: "postres" },
+        { value: "bebidas", label: "bebidas" },
+        { value: "vinos", label: "vinos" }
+    ];
+
+    const emptyDish = { name: "", price: "", description: "", type: "", imageUrl: "https://picsum.photos/200" };
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [editingDish, setEditingDish] = useState(emptyDish);
+
+    // Carga datos vvacios para crear el plato
+    const handleCreateClick = () => {
+        setEditingDish(emptyDish);
+        setIsModalOpen(true);
+    }
+
+    // Editar plato: obtiene datos desde el backend
+    const handleUpdateClick = async (dishId) => {
+        const dish = await getDishById(dishId);
+        if (dish) {
+            setEditingDish(dish);
+            setIsModalOpen(true);
+        }
+    };
+
+    const handleSubmit = async (dishData) => {
+        if (dishData._id) {
+            await updateDish(dishData._id, dishData);
+        } else {
+            await createDish(dishData);
+        }
+        setIsModalOpen(false);
+        setEditingDish(emptyDish);
+    };
+
+    return (
+        <section className="tables-flex">
+            <div className="tables-create">
+                <p>Insertar un nuevo plato: </p>
+                <button className="button" onClick={handleCreateClick}>Insertar</button>
+            </div>
+
+            <Table
+                data={dishes}
+                columns={["name", "price"]}
+                onUpdate={handleUpdateClick}
+                onDelete={softDeleteDish}
+                actions={(dish) => (
+                    <>
+                        <button className="button" onClick={() => handleUpdateClick(dish._id)}>Update</button>
+                        <button className="button delete" onClick={() => softDeleteDish(dish._id)}>Eliminar</button>
+                    </>
+                )}
+            />
+
+            <DishModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onSubmit={handleSubmit}
+                initialData={editingDish}
+                typeList={typeList}
+            />
+        </section>
+    );
+};
+export default AdminMenu;
+```
+```js components/DishModal.jsx
+import { useEffect, useState } from "react";
+import Input from "@/components/forms/Input";
+import Select from "@/components/forms/Select";
+
+const DishModal = ({ isOpen, onClose, onSubmit, initialData, typeList }) => {
+    const [formData, setFormData] = useState(initialData);
+    const [errores, setErrores] = useState({});
+
+    useEffect(() => {
+        setFormData(initialData);
+        setErrores({});
+    }, [initialData]);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+        setErrores(prev => ({ ...prev, [name]: "" })); // limpiar error al escribir
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newErrors = {};
+
+        if (!formData.name.trim()) newErrors.name = "El nombre es obligatorio";
+        if (!formData.price || Number(formData.price) <= 0) newErrors.price = "El precio debe ser mayor a 0";
+        if (!formData.type) newErrors.type = "Debe seleccionar una categoría";
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrores(newErrors);
+            return;
+        }
+
+        onSubmit(formData); // llamar función de creación/edición
+    }
+
+    if (!isOpen) return null;
+
+    return (
+        <div className="modal">
+            <div className="modal-content">
+                <h2 className="modal-h2">{formData._id ? "Editar Plato" : "Nuevo Plato"}</h2>
+
+                <Input
+                    name="name"
+                    label="Nombre:"
+                    type="text"
+                    value={formData.name}
+                    onChange={handleChange}
+                    error={errores.name}
+                />
+
+                <Input
+                    name="price"
+                    label="Precio:"
+                    type="number"
+                    value={formData.price}
+                    onChange={handleChange}
+                    error={errores.price}
+                />
+
+                <Input
+                    name="description"
+                    label="Descripción:"
+                    type="text"
+                    value={formData.description}
+                    onChange={handleChange}
+                    error={errores.description}
+                />
+
+                <Select
+                    name="type"
+                    label="Categoría"
+                    firstOptionLabel="Seleccione la categoría"
+                    value={formData.type}
+                    onChange={handleChange}
+                    lista={typeList}
+                    error={errores.type}
+                />
+
+                <div className="modal-buttons">
+                    <button className="button cancel" onClick={onClose}>Cancelar</button>
+                    <button className="button create" onClick={handleSubmit}>Guardar</button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default DishModal;
+```
+```jsx Table.jsx
+const Table = ({ data, columns, onUpdate, onDelete }) => {
+    if (!data || data.length === 0) return <p>No hay información disponible</p>;
+
+    return (
+        <table className="table">
+            <thead>
+                <tr className="table-tr">
+                    {columns.map(col => <th key={col} className="table-th">{col}</th>)}
+                    <th className="table-th">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {data.map(item => (
+                    <tr
+                        key={item._id}
+                        className="table-tr"
+                        style={{
+                            color: item.deletedAt ? "gray" : "black",
+                            textDecoration: item.deletedAt ? "line-through" : "none"
+                        }}
+                    >
+                        {columns.map(col => <td key={col} className="table-td">{item[col] || ""}</td>)}
+                        <td className="table-td">
+                            {!item.deletedAt && <button className="button" onClick={() => onUpdate(item._id)}>Update</button>}
+                            {!item.deletedAt && <button className="button delete" onClick={() => onDelete(item._id)}>Eliminar</button>}
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    );
+};
+
+export default Table;
 ```
