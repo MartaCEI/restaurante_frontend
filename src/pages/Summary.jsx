@@ -15,11 +15,11 @@ const Summary = () => {
     }
 
     return (
-        <div className="summary">
-            <h2 className="summary-title">¡Gracias por tu pedido!</h2>
+        <div className="cart-flex">
+            <h2 className="cart-title">¡Gracias por tu pedido!</h2>
             <p className="summary-text">Resumen del pedido:</p>
 
-            <ul className="summary-list">
+            <ul className="cart-ul">
                 {order.items.map((item, index) => (
                     <li key={index} className="summary-item">
                         {item.item.name} x {item.quantity} = ${item.quantity * item.item.price}
@@ -27,10 +27,10 @@ const Summary = () => {
                 ))}
             </ul>
 
-            <h3 className="summary-total">Total: ${order.totalPrice}</h3>
+            <h3>Total: ${order.totalPrice}</h3>
 
             <Link to="/takeout">
-                <button className="button">Volver al menú</button>
+                <button className="cart-a">Volver al menú</button>
             </Link>
         </div>
     );

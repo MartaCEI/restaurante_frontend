@@ -23,69 +23,67 @@ const Cart = ({ userId }) => {
     };
 
     return (
-        <div className="cart-container">
+        <section className="cart-flex">
             <h2 className="cart-title">Carrito de Compras</h2>
-
-            <div className="cart-grid">
-                <div className="cart-content">
-                    <h3 className="cart-subtitle">Mi Carrito</h3>
-
-                    {carritoArray.length === 0 ? (
-                        <p className="cart-empty">El carrito está vacío</p>
-                    ) : (
-                        <ul className="cart-list">
-                            {carritoArray.map(producto => (
-                                <li key={producto.menuId} className="cart-item">
-                                    <span className="cart-item-info">
-                                        {producto.item?.name || "Producto"} x {producto.quantity} = $
-                                        {producto.item?.price * producto.quantity || 0}
-                                    </span>
-                                    <div className="cart-item-buttons">
-                                        <button
-                                            onClick={() => quitarItem(producto.menuId)}
-                                            className="button cart-button"
-                                        >
-                                            -
-                                        </button>
-                                        <button
-                                            onClick={() => agregarItem(producto.item)}
-                                            className="button cart-button"
-                                        >
-                                            +
-                                        </button>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-
-                    <div className="cart-summary">
+            {carritoArray.length === 0 ? (
+                <p className="cart-empty">El carrito está vacío</p>
+            ) : (
+                <ul className="cart-ul">
+                    {carritoArray.map(producto => (
+                        <li key={producto.menuId} className="cart-li">
+                            <span className="cart-info">
+                                {producto.item?.name} x {producto.quantity} = $
+                                {producto.item?.price * producto.quantity || 0}
+                            </span>
+                            <div className="cart-buttons">
+                                <button
+                                    onClick={() => quitarItem(producto.menuId)}
+                                    className="cart-smallButton"
+                                >
+                                    -
+                                </button>
+                                <p>{producto.quantity}</p>
+                                <button
+                                    onClick={() => agregarItem(producto.item)}
+                                    className="cart-smallButton"
+                                >
+                                    +
+                                </button>
+                            </div>
+                        </li>
+                    ))}
+                    <li className="cart-summary">
                         <h4>Total Items: {totalItems}</h4>
+                    </li>
+                    <li className="cart-summary">
                         <h4>Total: ${totalPrice}</h4>
-                    </div>
+                    </li>
+                </ul>
+            )
+            }
 
-                    {error && <p className="cart-error">{error}</p>}
 
-                    <button
-                        onClick={handleCheckout}
-                        disabled={loading || carritoArray.length === 0}
-                        className="button cart-checkout"
-                    >
-                        {loading ? "Procesando..." : "Realizar Pedido"}
+
+            {error && <p className="cart-error">{error}</p>}
+            <div className="cart-buttons">
+                <button
+                    onClick={handleCheckout}
+                    disabled={loading || carritoArray.length === 0}
+                    className="cart-button"
+                >
+                    {loading ? "Procesando..." : "Realizar Pedido"}
+                </button>
+
+                {carritoArray.length > 0 && (
+                    <button className="cart-button" onClick={limpiarCarrito}>
+                        Limpiar Carrito
                     </button>
-
-                    {carritoArray.length > 0 && (
-                        <button className="button cart-clear" onClick={limpiarCarrito}>
-                            Limpiar Carrito
-                        </button>
-                    )}
-
-                    <Link to="/takeout" className="cart-link">
-                        Volver al menú
-                    </Link>
-                </div>
+                )}
             </div>
-        </div>
+            <Link to="/takeout" className="cart-a">
+                Volver al menú
+            </Link>
+        </section >
     );
 };
 

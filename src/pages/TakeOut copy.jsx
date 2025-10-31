@@ -27,18 +27,11 @@ const TakeOut = ({ userId }) => {
         <>
             <TopPictures />
             <MenuButtons setType={setSelectedType} />
-
             <section className="menu-flex">
                 <h2 className="menu-h2">{selectedType}</h2>
                 <div className="menu-grid">
                     {displayDishes.map(dish => (
-                        <TakeOutCard
-                            key={dish._id}
-                            item={dish}
-                            cantidad={items[dish._id]?.quantity || 0}
-                            agregarItem={agregarItem}
-                            quitarItem={quitarItem}
-                        />
+                        <TakeOutCard key={dish._id} {...dish} />
                     ))}
                 </div>
             </section>

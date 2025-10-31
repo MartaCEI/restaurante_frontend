@@ -19,19 +19,17 @@ const Footer = () => {
                     <p className="footer-content">Vienes - Domingo  12:00 - 1:00</p>
                 </div>
                 <div className="footer-left">
-                    <p className="footer-title">Social:</p>
                     <ul className="footer-ul">
                         <li className="footer-li">
-                            <img src={logo} alt="Facebook" className="social-img" />
+                            <img src={logo} alt="" />
                         </li>
                         <li className="footer-li">
-                            <img src={logo} alt="Facebook" className="social-img" />
+                            <Link to="/register" className="form-button">Register</Link>
                         </li>
                         <li className="footer-li">
-                            <img src={logo} alt="Facebook" className="social-img" />
+                            <Link to="/register" className="form-button">Login</Link>
                         </li>
                     </ul>
-                    <Link to="/register" className="social-button">Register</Link>
                 </div>
             </div>
             <p>© 2024 Restaurante Full Stack. Todos los derechos reservados.</p>

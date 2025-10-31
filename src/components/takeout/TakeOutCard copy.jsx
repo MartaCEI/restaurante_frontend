@@ -1,18 +1,13 @@
 import React from "react";
 
-const TakeOutCard = ({ item, cantidad, agregarItem, quitarItem }) => {
+const TakeOutCard = ({ _id, name, description, price, agregarItem }) => {
     return (
         <article className="menu-card">
             <div className="card">
-                <h3 className="card-title">{item.name}</h3>
-                <p className="card-price">${item.price}</p>
+                <h3 className="card-title">{name}</h3>
+                <p className="card-price">{price}</p>
             </div>
-
-            <p className="card-desc">{item.description}</p>
-
-            <div className="counter">
-                Añadido al carrito: <span>{cantidad}</span>
-            </div>
+            <p className="card-desc">{description}</p>
 
             <div className="cart-buttons">
                 <button className="cart-button" onClick={() => agregarItem(item)}>
@@ -20,7 +15,8 @@ const TakeOutCard = ({ item, cantidad, agregarItem, quitarItem }) => {
                 </button>
             </div>
         </article>
-    );
+
+    )
 };
 
 export default TakeOutCard;
