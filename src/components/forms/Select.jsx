@@ -1,8 +1,10 @@
-const Select = ({name, label, firstOptionLabel, value, onChange, lista=[{value:0, label:"no hay items"}], error, className, debug}) => {
+const Select = ({divClassName, selectClassName, labelClassName, spanLabel, name, label, firstOptionLabel, value, onChange, lista=[{value:0, label:"no hay items"}], inputError, error}) => {
     return (
-        <div className={className}>
-            {label && <label htmlFor={name}>{label}</label>}
+        <div className={divClassName}>
+            {label && <label htmlFor={name} className={labelClassName}>
+                <span className={spanLabel}>{label}</span></label>}
             <select 
+                className={selectClassName}
                 name={name} 
                 id={name}
                 value={value}
@@ -15,7 +17,7 @@ const Select = ({name, label, firstOptionLabel, value, onChange, lista=[{value:0
                         ))
                     }
             </select>
-            {error &&  <p style={ {color:'red'} }>  {error}</p> }
+            {error && <i className={`${inputError} show`}>{error}</i>}
         </div>
     )
 }

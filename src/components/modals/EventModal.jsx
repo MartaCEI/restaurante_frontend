@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Input from "@/components/forms/Input";
+import ModalButtons from "./ModalButtons";
 
 const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
     const [formData, setFormData] = useState(initialData);
@@ -10,7 +11,7 @@ const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
         setErrors({});
     }, [initialData]);
 
-    const handleChange = (e) => {
+    const handleOnChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
         setErrors(prev => ({ ...prev, [name]: "" }));
@@ -39,19 +40,80 @@ const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
         <div className="modal">
             <div className="modal-content">
                 <h2 className="modal-h2">{formData._id ? "Editar Evento" : "Nuevo Evento"}</h2>
-
                 <div className="modal-body">
-                    <Input className="modal-input" name="title" label="Título:" type="text" value={formData.title} onChange={handleChange} error={errors.title} />
-                    <Input className="modal-input" name="description" label="Descripción:" type="text" value={formData.description} onChange={handleChange} error={errors.description} />
-                    <Input className="modal-input" name="date" label="Fecha:" type="text" value={formData.date} onChange={handleChange} error={errors.date} />
-                    <Input className="modal-input" name="time" label="Hora:" type="text" value={formData.time} onChange={handleChange} error={errors.time} />
-                    <Input className="modal-input" name="img" label="URL Imagen:" type="text" value={formData.img} onChange={handleChange} error={errors.img} />
-                </div>
+                    <Input
+                        divClassName="form-labels"
+                        inputClassName="input"
+                        labelClassName="form-label"
+                        spanLabel="input-label"
+                        name="title"
+                        label="Título*"
+                        type="text"
+                        value={formData.title}
+                        onChange={handleOnChange}
+                        placeholder="Introduce tu email"
+                        error={errors.title}
+                        inputError="input--error"
+                    />
+                    <Input
+                        divClassName="form-labels"
+                        inputClassName="input"
+                        labelClassName="form-label"
+                        spanLabel="input-label"
+                        name="description"
+                        label="Descripción*"
+                        type="text"
+                        value={formData.description}
+                        onChange={handleOnChange}
+                        placeholder="Introduce tu email"
+                        error={errors.description}
+                        inputError="input--error"
+                    />
+                    <Input
+                        divClassName="form-labels"
+                        inputClassName="input"
+                        labelClassName="form-label"
+                        spanLabel="input-label"
+                        name="date"
+                        label="Fecha (dd/mm/aaaa)*"
+                        type="text"
+                        value={formData.date}
+                        onChange={handleOnChange}
+                        placeholder="Introduce tu email"
+                        error={errors.date}
+                        inputError="input--error"
+                    />
+                    <Input
+                        divClassName="form-labels"
+                        inputClassName="input"
+                        labelClassName="form-label"
+                        spanLabel="input-label"
+                        name="time"
+                        label="Horario*"
+                        type="text"
+                        value={formData.time}
+                        onChange={handleOnChange}
+                        placeholder="Introduce tu email"
+                        error={errors.time}
+                        inputError="input--error"
+                    />
 
-                <div className="modal-buttons">
-                    <button className="button cancel" onClick={onClose}>Cancelar</button>
-                    <button className="button create" onClick={handleSubmit}>Guardar</button>
+                    <Input
+                        divClassName="form-labels"
+                        inputClassName="input"
+                        labelClassName="form-label"
+                        spanLabel="input-label"
+                        name="img"
+                        label="Imagen nombre.ext*"
+                        type="text"
+                        value={formData.img}
+                        onChange={handleOnChange}
+                        placeholder="Introduce tu email"
+                        error={errors.img}
+                        inputError="input--error"
+                    />
                 </div>
+                <ModalButtons handleSubmit={handleSubmit} onClose={onClose} />
             </div>
         </div>
     );

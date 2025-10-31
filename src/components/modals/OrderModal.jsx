@@ -1,25 +1,29 @@
 import { useState, useEffect } from "react";
 import Select from "@/components/forms/Select";
+import ModalButtons from "./ModalButtons";
 
 const OrderModal = ({ isOpen, onClose, onSubmit, initialData, statusList }) => {
     const [formData, setFormData] = useState(initialData || {});
-    const [error, setError] = useState("");
+    const [errors, setErrors] = useState("");
 
     useEffect(() => {
         setFormData(initialData || {});
-        setError("");
+        setErrors({});
     }, [initialData]);
 
-    const handleChange = (e) => {
+    const handleOnChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
-        setError("");
+        setErrors(prev => ({ ...prev, [name]: "" }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!formData.orderStatus) {
-            setError("Debes seleccionar un estado");
+        const newErrors = {};
+        if (formData.orderStatus === undefined || formData.orderStatus === null) newErrors.orderStatus = "Debes seleccionar uno";
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
             return;
         }
         onSubmit(formData);
@@ -28,7 +32,7 @@ const OrderModal = ({ isOpen, onClose, onSubmit, initialData, statusList }) => {
     if (!isOpen) return null;
 
     const displayFields = [
-        { label: "Usuario", value: formData.userName },
+        { label: "Usuario", value: formData.user },
         { label: "Email", value: formData.email },
         { label: "Platos", value: formData.items },
         { label: "Total", value: `$${formData.totalPrice}` },
@@ -49,14 +53,20 @@ const OrderModal = ({ isOpen, onClose, onSubmit, initialData, statusList }) => {
                     ))}
                 </div>
 
-                <div className="modal-select">
-                    <Select name="orderStatus" label="Actualizar estado" value={formData.orderStatus} onChange={handleChange} lista={statusList} firstOptionLabel="Selecciona un estado" error={error} />
-                </div>
+                <Select divClassName="form-labels"
+                    selectClassName="select"
+                    labelClassName="form-label"
+                    spanLabel="input-label"
+                    name="isAdmin"
+                    label="Administrador"
+                    value={formData.isAdmin}
+                    onChange={handleOnChange}
+                    lista={statusList}
+                    firstOptionLabel="Selecciona una opción"
+                    error={errors.isAdmin}
+                    inputError="input--error" />
 
-                <div className="modal-buttons">
-                    <button className="button cancel" onClick={onClose}>Cancelar</button>
-                    <button className="button create" onClick={handleSubmit}>Guardar</button>
-                </div>
+                <ModalButtons handleSubmit={handleSubmit} onClose={onClose} />
             </div>
         </div>
     );

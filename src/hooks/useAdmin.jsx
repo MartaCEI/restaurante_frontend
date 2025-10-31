@@ -132,11 +132,11 @@ export const AdminProvider = ({ children }) => {
         }
     }
 
-    useEffect(() => {
-        getAllDishes();
-        getAllUsers();
-        getAllEventsAdmin();
-    }, []);
+    // useEffect(() => {
+    //     getAllDishes();
+    //     getAllUsers();
+    //     getAllEventsAdmin();
+    // }, []);
 
     // router.post('admin/dishes', authMiddleware, createDish) // createDish(dishData)
     const createDish = async (newDish) => {
@@ -376,6 +376,7 @@ export const AdminProvider = ({ children }) => {
     return (
         <AdminContext.Provider value={{
             users, dishes, dish, events, error,
+            getAllDishes, getAllUsers, getAllEventsAdmin,
             getDishById, updateDish, softDeleteDish, createDish,
             getUserById, updateUser, deleteUserPermanently,
             getEventById, updateEvent, softDeleteEvent, createEvent

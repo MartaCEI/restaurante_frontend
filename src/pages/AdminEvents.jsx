@@ -4,12 +4,16 @@ import EventModal from "@/components/modals/EventModal";
 import { useAdmin } from "@/hooks/useAdmin";
 
 const AdminEvents = () => {
-    const { events, getEventById, updateEvent, createEvent, softDeleteEvent } = useAdmin();
+    const { events, getEventById, updateEvent, createEvent, softDeleteEvent, getAllEventsAdmin } = useAdmin();
 
     const emptyEvent = { title: "", description: "", date: "", time: "", img: "" };
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingEvent, setEditingEvent] = useState(emptyEvent);
     const [isCreating, setIsCreating] = useState(false);
+
+    useEffect(()=> {
+        getAllEventsAdmin();
+    },[events])
 
     const handleCreateClick = () => {
         setEditingEvent(emptyEvent);
@@ -38,9 +42,9 @@ const AdminEvents = () => {
 
     return (
         <section className="tables-flex">
-            <div className="tables-create">
+            <div className="modal-buttons">
                 <p>Crear evento:</p>
-                <button className="button" onClick={handleCreateClick}>Insertar</button>
+                <button className="form-button actualizar" onClick={handleCreateClick}>nuevo</button>
             </div>
 
             <Table

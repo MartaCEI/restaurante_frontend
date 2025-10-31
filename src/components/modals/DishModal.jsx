@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Input from "@/components/forms/Input";
 import Select from "@/components/forms/Select";
+import ModalButtons from "./ModalButtons";
 
 const DishModal = ({ isOpen, onClose, onSubmit, initialData, typeList }) => {
     const [formData, setFormData] = useState(initialData);
@@ -11,7 +12,7 @@ const DishModal = ({ isOpen, onClose, onSubmit, initialData, typeList }) => {
         setErrors({});
     }, [initialData]);
 
-    const handleChange = (e) => {
+    const handleOnChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
         setErrors(prev => ({ ...prev, [name]: "" }));
@@ -38,18 +39,63 @@ const DishModal = ({ isOpen, onClose, onSubmit, initialData, typeList }) => {
         <div className="modal">
             <div className="modal-content">
                 <h2 className="modal-h2">{formData._id ? "Editar Plato" : "Nuevo Plato"}</h2>
-
                 <div className="modal-body">
-                    <Input className="modal-input" name="name" label="Nombre:" type="text" value={formData.name} onChange={handleChange} error={errors.name} />
-                    <Input className="modal-input" name="price" label="Precio:" type="number" value={formData.price} onChange={handleChange} error={errors.price} />
-                    <Input className="modal-input" name="description" label="Descripción:" type="text" value={formData.description} onChange={handleChange} error={errors.description} />
-                    <Select className="modal-select" name="type" label="Categoría" value={formData.type} onChange={handleChange} lista={typeList} firstOptionLabel="Seleccione la categoría" error={errors.type} />
+                    <Input
+                        divClassName="form-labels"
+                        inputClassName="input"
+                        labelClassName="form-label"
+                        spanLabel="input-label"
+                        name="name"
+                        label="Nombre*"
+                        type="text"
+                        value={formData.name}
+                        onChange={handleOnChange}
+                        placeholder="Introduce tu email"
+                        error={errors.name}
+                        inputError="input--error"
+                    />
+                    <Input
+                        divClassName="form-labels"
+                        inputClassName="input"
+                        labelClassName="form-label"
+                        spanLabel="input-label"
+                        name="price"
+                        label="Precio *"
+                        type="number"
+                        value={formData.price}
+                        onChange={handleOnChange}
+                        placeholder="Introduce tu email"
+                        error={errors.price}
+                        inputError="input--error"
+                    />
+                    <Input
+                        divClassName="form-labels"
+                        inputClassName="input"
+                        labelClassName="form-label"
+                        spanLabel="input-label"
+                        name="description"
+                        label="Descripción*"
+                        type="text"
+                        value={formData.description}
+                        onChange={handleOnChange}
+                        placeholder="Introduce tu email"
+                        error={errors.description}
+                        inputError="input--error"
+                    />
+                    <Select divClassName="form-labels"
+                        selectClassName="select"
+                        labelClassName="form-label"
+                        spanLabel="input-label"
+                        name="type"
+                        label="Administrador"
+                        value={formData.type}
+                        onChange={handleOnChange}
+                        lista={typeList}
+                        firstOptionLabel="Selecciona una opción"
+                        error={errors.type}
+                        inputError="input--error" />
                 </div>
-
-                <div className="modal-buttons">
-                    <button className="button cancel" onClick={onClose}>Cancelar</button>
-                    <button className="button create" onClick={handleSubmit}>Guardar</button>
-                </div>
+                <ModalButtons handleSubmit={handleSubmit} onClose={onClose} />
             </div>
         </div>
     );

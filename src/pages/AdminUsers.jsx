@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Table from "@/components/Table";
 import UserModal from "@/components/modals/UserModal";
 import { useAdmin } from "@/hooks/useAdmin";
 
 const AdminUsers = () => {
-    const { users, getUserById, updateUser, deleteUserPermanently } = useAdmin();
+    const { users, getUserById, updateUser, deleteUserPermanently, getAllUsers } = useAdmin();
 
     const isAdminList = [
         { value: "true", label: "true" },
@@ -15,6 +15,10 @@ const AdminUsers = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingUser, setEditingUser] = useState(emptyUser);
+
+    useEffect(()=> {
+        getAllUsers()
+    },[users])
 
     const handleUpdateClick = async (userId) => {
         const user = await getUserById(userId);

@@ -14,11 +14,11 @@ const Home = () => {
                     </div>
                     <div className="home-containers">
                         <h2 className="home-h2">Nuestro Menú</h2>
-                        <Link to="/home" className="home-button">home</Link>
+                        <Link to="/menu" className="home-button">Menú</Link>
                     </div>
                     <div className="home-containers">
                         <h2 className="home-h2">Para llevar</h2>
-                        <Link to="/home" className="home-button">takeout</Link>
+                        <Link to="/takeout" className="home-button">Takeout</Link>
                     </div>
                     <div className="home-containers">
                         <img src="https://picsum.photos/500/700" alt="" />
@@ -28,7 +28,7 @@ const Home = () => {
                     </div>
                     <div className="home-containers">
                         <h2 className="home-h2">eventos</h2>
-                        <Link to="/home" className="home-button">eventos</Link>
+                        <Link to="/events" className="home-button">eventos</Link>
                     </div>
                 </div>
             </section>

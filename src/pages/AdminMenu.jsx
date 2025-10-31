@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Table from "@/components/Table";
 import DishModal from "@/components/modals/DishModal";
 import { useAdmin } from "@/hooks/useAdmin";
 
 const AdminMenu = () => {
-    const { dishes, createDish, updateDish, getDishById, softDeleteDish } = useAdmin();
+    const { dishes, createDish, updateDish, getDishById, softDeleteDish, getAllDishes } = useAdmin();
+
+        useEffect(()=>{
+        getAllDishes();
+    },[dishes]);
     
     const typeList = [
         { value: "entrantes", label: "entrantes" },
@@ -48,9 +52,9 @@ const AdminMenu = () => {
 
     return (
         <section className="tables-flex">
-            <div className="tables-create">
+            <div className="modal-buttons">
                 <p>Insertar un nuevo plato: </p>
-                <button className="button" onClick={handleCreateClick}>Insertar</button>
+                <button className="form-button actualizar" onClick={handleCreateClick}>Nuevo</button>
             </div>
 
             <Table

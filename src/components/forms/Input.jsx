@@ -1,17 +1,18 @@
-const Input = ({name, label, type="text", value, onChange, error, className, debug=false}) =>{
+const Input = ({divClassName, labelClassName, spanLabel, label, inputClassName, type, name, value, onChange, placeholder, error, inputError}) =>{
     return (
-        <div className={className}>
-            <label>
-                {label}
+        <div className={divClassName}>
+            <label className={labelClassName}>
+                <span className={spanLabel}>{label}</span>
                 <input 
+                    className={inputClassName}
                     type={type} 
                     name={name}
                     value={value} 
                     onChange={onChange}
+                    placeholder={placeholder}
                 />
             </label>
-            {error &&  <p style={ {color:'red'} }>  {error}</p> }
-            {debug && <span style={{color:'orange'}}>V: {JSON.stringify(value)}</span>}
+            {error && <i className={`${inputError} show`}>{error}</i>}
         </div>
     )
 };

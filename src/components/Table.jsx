@@ -31,10 +31,10 @@ const Table = ({ data, columns, onUpdate, onDelete }) => {
                         ))}
                         <td className="table-td">
                             {!item.deletedAt && (
-                                <>
-                                    <button className="button" onClick={() => onUpdate(item._id)}>Actualizar</button>
-                                    <button className="button delete" onClick={() => onDelete(item._id)}>Eliminar</button>
-                                </>
+                                <div className="modal-buttons">
+                                    <button className="form-button actualizar" onClick={() => onUpdate(item._id)}>Actualizar</button>
+                                    <button className="form-button eliminar" onClick={() => onDelete(item._id)}>Eliminar</button>
+                                </div>
                             )}
                         </td>
                     </tr>

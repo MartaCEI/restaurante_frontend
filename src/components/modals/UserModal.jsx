@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Input from "@/components/forms/Input";
 import Select from "@/components/forms/Select";
+import ModalButtons from "./ModalButtons";
 
 const UserModal = ({ isOpen, onClose, onSubmit, initialData, isAdminList }) => {
     const [formData, setFormData] = useState(initialData);
@@ -11,7 +12,7 @@ const UserModal = ({ isOpen, onClose, onSubmit, initialData, isAdminList }) => {
         setErrors({});
     }, [initialData]);
 
-    const handleChange = (e) => {
+    const handleOnChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
         setErrors(prev => ({ ...prev, [name]: "" }));
@@ -21,7 +22,7 @@ const UserModal = ({ isOpen, onClose, onSubmit, initialData, isAdminList }) => {
         e.preventDefault();
         const newErrors = {};
         if (!formData.name?.trim()) newErrors.name = "El nombre es obligatorio";
-        if (!formData.username?.trim()) newErrors.username = "El email es obligatorio";
+        if (!formData.username) newErrors.username = "El email es obligatorio";
         if (!formData.street?.trim()) newErrors.street = "La calle es obligatoria";
         if (!formData.city?.trim()) newErrors.city = "La ciudad es obligatoria";
         if (!formData.cp?.trim()) newErrors.cp = "El código postal es obligatorio";
@@ -43,19 +44,96 @@ const UserModal = ({ isOpen, onClose, onSubmit, initialData, isAdminList }) => {
                 <h2 className="modal-h2">{formData._id ? "Editar Usuario" : "Nuevo Usuario"}</h2>
 
                 <div className="modal-body">
-                    <Input className="modal-input" name="name" label="Nombre:" type="text" value={formData.name} onChange={handleChange} error={errors.name} />
-                    <Input className="modal-input" name="username" label="Email:" type="email" value={formData.username} onChange={handleChange} error={errors.username} />
-                    <Input className="modal-input" name="street" label="Calle:" type="text" value={formData.street} onChange={handleChange} error={errors.street} />
-                    <Input className="modal-input" name="city" label="Ciudad:" type="text" value={formData.city} onChange={handleChange} error={errors.city} />
-                    <Input className="modal-input" name="cp" label="Código Postal:" type="text" value={formData.cp} onChange={handleChange} error={errors.cp} />
+                    <Input
+                        divClassName="form-labels"
+                        inputClassName="input"
+                        labelClassName="form-label"
+                        spanLabel="input-label"
+                        name="name"
+                        label="Nombre*"
+                        type="text"
+                        value={formData.name}
+                        onChange={handleOnChange}
+                        placeholder="Introduce tu email"
+                        error={errors.name}
+                        inputError="input--error"
+                    />
 
-                    <Select className="modal-select" name="isAdmin" label="Administrador" value={formData.isAdmin} onChange={handleChange} lista={isAdminList} firstOptionLabel="Selecciona una opción" error={errors.isAdmin} />
+                    <Input
+                        divClassName="form-labels"
+                        inputClassName="input"
+                        labelClassName="form-label"
+                        spanLabel="input-label"
+                        name="username"
+                        label="Email*"
+                        type="text"
+                        value={formData.username}
+                        onChange={handleOnChange}
+                        placeholder="Introduce tu email"
+                        error={errors.username}
+                        inputError="input--error"
+                    />
+
+                    <Input
+                        divClassName="form-labels"
+                        inputClassName="input"
+                        labelClassName="form-label"
+                        spanLabel="input-label"
+                        name="street"
+                        label="Dirección*"
+                        type="text"
+                        value={formData.street}
+                        onChange={handleOnChange}
+                        placeholder="Introduce tu email"
+                        error={errors.street}
+                        inputError="input--error"
+                    />
+
+                    <Input
+                        divClassName="form-labels"
+                        inputClassName="input"
+                        labelClassName="form-label"
+                        spanLabel="input-label"
+                        name="city"
+                        label="Ciudad*"
+                        type="text"
+                        value={formData.city}
+                        onChange={handleOnChange}
+                        placeholder="Introduce tu email"
+                        error={errors.city}
+                        inputError="input--error"
+                    />
+
+                    <Input
+                        divClassName="form-labels"
+                        inputClassName="input"
+                        labelClassName="form-label"
+                        spanLabel="input-label"
+                        name="cp"
+                        label="Código Postal*"
+                        type="text"
+                        value={formData.cp}
+                        onChange={handleOnChange}
+                        placeholder="Introduce tu email"
+                        error={errors.cp}
+                        inputError="input--error"
+                    />
+
+                    <Select divClassName="form-labels"
+                        selectClassName="select"
+                        labelClassName="form-label"
+                        spanLabel="input-label"
+                        name="isAdmin"
+                        label="Administrador"
+                        value={formData.isAdmin}
+                        onChange={handleOnChange}
+                        lista={isAdminList}
+                        firstOptionLabel="Selecciona una opción"
+                        error={errors.isAdmin}
+                        inputError="input--error" />
                 </div>
 
-                <div className="modal-buttons">
-                    <button className="button cancel" onClick={onClose}>Cancelar</button>
-                    <button className="button create" onClick={handleSubmit}>Guardar</button>
-                </div>
+                <ModalButtons handleSubmit={handleSubmit} onClose={onClose} />
             </div>
         </div>
     );
