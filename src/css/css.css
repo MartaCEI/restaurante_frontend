@@ -159,9 +159,23 @@ table * {
     color: #c49a6c;
 }
 
+.header-user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.5rem;
+    width: 5rem; 
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    text-transform: uppercase;
+    color:#ac413c
+}
+
 .header-buttons {
     display: flex;
     gap: 1rem;
+    align-items: center;
 }
 
 /* ====== FOOTER GENERAL ====== */
@@ -244,19 +258,37 @@ table * {
     /* hace que la imagen llene el contenedor */
 }
 
+.top-titles {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem 0 2rem;
+    gap: 1rem;
+}
+
 .top-h1 {
     position: absolute;
-    /* se posiciona respecto al .top-div */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* centra horizontal y verticalmente */
     color: white;
     font-size: 3rem;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-    /* mejora la legibilidad */
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.767);
+    text-transform: uppercase;
 }
 
+.top-h2 {           
+    height: 3rem;
+    font-weight: 400;
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    color: #000;
+    border-top: 3px solid #000;
+    border-bottom: 2px solid #000;
+}
 
 /* ====== MENÚ ====== */
 .menu-buttons {
@@ -294,8 +326,7 @@ table * {
     border-bottom: 2px solid #000;
 }
 
-.menu-grid,
-.home-grid {
+.menu-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* dos columnas fijas */
     gap: 20px;

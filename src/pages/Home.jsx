@@ -1,13 +1,19 @@
 import TopPictures from "@/components/TopPictures";
 import { Link } from "react-router-dom";
+import { usePageInfo } from "@/hooks/usePageInfo";
+import { useEffect } from "react";
 
 const Home = () => {
+        const { pageInfo, fetchPageInfo, } = usePageInfo();
+
+        useEffect(() => {
+            fetchPageInfo("home");
+        }, []);
+
     return (
         <>
-            <TopPictures />
+            {pageInfo && <TopPictures pageInfo={pageInfo} />}
             <section className="home-flex">
-                <h2>Bienvenidos A NOMBRE</h2>
-                <p>Un restaurante magnifico que te dejara con la boca abierta de los apetitoso y delicioso que es todo. No solo ofrecemos comida pero tambien cenas de gruppos, eventos en fechas especiales...</p>
                 <div className="home-grid">
                     <div className="home-containers">
                         <img src="https://picsum.photos/500/700" alt="" />

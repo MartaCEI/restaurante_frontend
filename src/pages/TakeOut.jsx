@@ -4,12 +4,18 @@ import MenuButtons from "@/components/menu/MenuButtons";
 import TakeOutCard from "@/components/takeout/TakeOutCard";
 import { useMenu } from "@/hooks/useMenu";
 import { useCarrito } from "@/hooks/useCarrito";
+import { usePageInfo } from "../hooks/usePageInfo";
 
 const TakeOut = ({ userId }) => {
     const { filteredDishes, getDishesByType } = useMenu();
     const [selectedType, setSelectedType] = useState("entrantes");
     const [displayDishes, setDisplayDishes] = useState([]);
     const { items, agregarItem, quitarItem } = useCarrito(userId);
+    const { pageInfo, fetchPageInfo } = usePageInfo();
+
+    useEffect(() => {
+        fetchPageInfo("takeout");
+    }, []);
 
     // Cargar los platos según el tipo seleccionado
     useEffect(() => {
@@ -25,7 +31,7 @@ const TakeOut = ({ userId }) => {
 
     return (
         <>
-            <TopPictures />
+            {pageInfo && <TopPictures pageInfo={pageInfo} />}
             <MenuButtons setType={setSelectedType} />
 
             <section className="menu-flex">

@@ -28,8 +28,8 @@ const AdminHeader = ({user}) => {
                 </ul>
             </nav>
             <div className="header-buttons">
-                <p>Admin: {user.name}</p>
-                <Link onClick={logout} className="header-button">Salir</Link>
+                <p className="header-user">Admin: {user.name}</p>
+                <Link onClick={logout} className="home-button">Salir</Link>
             </div>
         </div>
     );

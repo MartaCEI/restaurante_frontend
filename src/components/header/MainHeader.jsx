@@ -20,8 +20,8 @@ const MainHeader = () => {
                 </ul>
             </nav>
             <div className="header-buttons">
-                <Link to="/login" className="header-button">TakeOut</Link>
-                <Link to="/login" className="header-button">Login</Link>
+                <Link to="/login" className="home-button">TakeOut</Link>
+                <Link to="/login" className="home-button">Login</Link>
             </div>
         </div>
     );

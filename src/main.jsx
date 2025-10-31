@@ -10,6 +10,7 @@ import { AdminProvider } from './hooks/useAdmin'
 import { OrderProvider } from './hooks/useOrders'
 import { CarritoProvider } from './hooks/useCarrito'
 import { EventProvider } from './hooks/useEvents'
+import { PageInfoProvider } from './hooks/usePageInfo'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -19,7 +20,9 @@ createRoot(document.getElementById('root')).render(
           <OrderProvider>
             <CarritoProvider>
               <EventProvider>
-                <RouterProvider router={router} />
+                <PageInfoProvider>
+                  <RouterProvider router={router} />
+                </PageInfoProvider>
               </EventProvider>
             </CarritoProvider>
           </OrderProvider>

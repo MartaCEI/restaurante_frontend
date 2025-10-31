@@ -3,11 +3,17 @@ import { useMenu } from "@/hooks/useMenu";
 import TopPictures from "@/components/TopPictures";
 import MenuCard from "@/components/menu/MenuCard";
 import MenuButtons from "@/components/menu/MenuButtons";
+import { usePageInfo } from "@/hooks/usePageInfo";
 
 const Menu = () => {
     const { filteredDishes, getDishesByType } = useMenu();
+    const { pageInfo, fetchPageInfo } = usePageInfo();
     const [selectedType, setSelectedType] = useState("entrantes");
     const [displayDishes, setDisplayDishes] = useState([]);
+
+    useEffect(() => {
+        fetchPageInfo("menu");
+    }, []);
 
     // Cargar los platos según el tipo seleccionado
     useEffect(() => {
@@ -23,7 +29,7 @@ const Menu = () => {
 
     return (
         <>
-            <TopPictures />
+            {pageInfo && <TopPictures pageInfo={pageInfo} />}
             <MenuButtons setType={setSelectedType} />
             <section className="menu-flex">
                 <h2 className="menu-h2">{selectedType}</h2>
