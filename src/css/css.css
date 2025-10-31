@@ -300,8 +300,7 @@ table * {
     gap:1rem;
 }
 
-.menu-flex,
-.home-flex {
+.menu-flex {
     width: 100%;
     max-width: 62rem;
     display: flex;
@@ -396,13 +395,42 @@ table * {
     border-bottom: 2px solid #000;
 }
 
+.home-flex {
+    width: 100%;
+    max-width: 62rem;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 4rem 0.5rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+}
+
+.home-article {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.home-article:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
 .home-containers {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    width: 500px;
+    height: 400px;
     gap: 2rem;
     background-color:rgb(219, 206, 189);
+}
+
+.home-img{
+    width: auto;
+    height: 100%;
+    object-fit: cover;
 }
 
 .home-button {
