@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Input from "@/components/forms/Input";
-import ModalButtons from "@/ModalButtons";
+import ModalButtons from "@/components/modals/ModalButtons";
 
 const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
     const [formData, setFormData] = useState(initialData);

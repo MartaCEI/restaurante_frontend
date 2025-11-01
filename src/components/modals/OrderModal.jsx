@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Select from "@/components/forms/Select";
-import ModalButtons from "@/ModalButtons";
+import ModalButtons from "@/components/modals/ModalButtons";
 
 const OrderModal = ({ isOpen, onClose, onSubmit, initialData, statusList }) => {
     const [formData, setFormData] = useState(initialData || {});
