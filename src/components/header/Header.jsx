@@ -1,5 +1,4 @@
 
-import logo from '@/assets/react.svg'
 import { useUser } from "@/hooks/useUser";
 import MainHeader from "@/components/header/MainHeader";
 import UserHeader from "@/components/header/UserHeader";
@@ -8,11 +7,12 @@ import AdminHeader from "@/components/header/AdminHeader";
 
 const Header = () => {
     const { user, logout } = useUser();
-    // const navigate = useNavigate();
+    const VITE_FRONTEND_IMG = import.meta.env.VITE_FRONTEND_IMG;
+
     return (
             <header className="header-container">
                 <div className="header-imgdiv">
-                    <img src={logo} alt="logo" className="header-img" />
+                    <img src={`${VITE_FRONTEND_IMG}/logo.png`} alt="logo" className="header-img" />
                 </div>
 
                 {/* Segun si el User existe, no existe o es Admin enseña un nav diferente.  */}
