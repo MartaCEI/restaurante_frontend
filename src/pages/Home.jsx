@@ -1,7 +1,7 @@
 import TopPictures from "@/components/TopPictures";
 import { usePageInfo } from "@/hooks/usePageInfo";
 import { useEffect } from "react";
-import HomeCard from "@/components/homeCard";
+import HomeCard from "@/components/HomeCard";
 
 const Home = () => {
     const { pageInfo, fetchPageInfo, fetchHomeInfo, homeInfo} = usePageInfo();
