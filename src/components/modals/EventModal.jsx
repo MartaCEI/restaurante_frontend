@@ -51,7 +51,7 @@ const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
                         type="text"
                         value={formData.title}
                         onChange={handleOnChange}
-                        placeholder="Introduce tu email"
+                        placeholder="Nombre del evento"
                         error={errors.title}
                         inputError="input--error"
                     />
@@ -65,7 +65,7 @@ const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
                         type="text"
                         value={formData.description}
                         onChange={handleOnChange}
-                        placeholder="Introduce tu email"
+                        placeholder="Descripción"
                         error={errors.description}
                         inputError="input--error"
                     />
@@ -79,7 +79,7 @@ const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
                         type="text"
                         value={formData.date}
                         onChange={handleOnChange}
-                        placeholder="Introduce tu email"
+                        placeholder="Fecha"
                         error={errors.date}
                         inputError="input--error"
                     />
@@ -93,7 +93,7 @@ const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
                         type="text"
                         value={formData.time}
                         onChange={handleOnChange}
-                        placeholder="Introduce tu email"
+                        placeholder="Hora del evento"
                         error={errors.time}
                         inputError="input--error"
                     />
@@ -108,7 +108,7 @@ const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
                         type="text"
                         value={formData.img}
                         onChange={handleOnChange}
-                        placeholder="Introduce tu email"
+                        placeholder="Ej: imagen.jpg"
                         error={errors.img}
                         inputError="input--error"
                     />

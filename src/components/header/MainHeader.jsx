@@ -9,9 +9,6 @@ const MainHeader = () => {
             <nav className="nav">
                 <ul className="nav-ul">
                     <li className="nav-li">
-                        <NavLink to="/" className="nav-a">HOME</NavLink>
-                    </li>
-                    <li className="nav-li">
                         <NavLink to="/menu" className="nav-a">MENU</NavLink>
                     </li>
                     <li className="nav-li">

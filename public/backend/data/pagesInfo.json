@@ -2,44 +2,23 @@
     "pagesInfo": [
         {
             "pageName": "home",
-            "title": "Bienvenidos a nombre",
+            "title": "los arroces de lucía",
             "subtitle": "Descubre un rincón donde la buena mesa y el ambiente se encuentran. Disfruta de platos tradicionales con un toque moderno, ingredientes frescos y una experiencia culinaria que te hará volver.",
-            "image": "paella.jpg",
-            "homeDesign": [
-                {
-                    "title": "Nuestro Menú",
-                    "link": "/menu",
-                    "button": "Menú",
-                    "image": "paella.jpg"
-                },
-                {
-                    "title": "Para llevar",
-                    "link": "/takeout",
-                    "button": "takeout",
-                    "image": "paella.jpg"
-                },
-                {
-                    "title": "eventos",
-                    "link": "/eventos",
-                    "button": "eventos",
-                    "image": "paella.jpg"
-                }
-            ]
+            "image": "paella.jpg"
         },
         {
             "pageName": "menu",
-            "image": "paella.jpg"
+            "image": "menu.jpg"
         },
         {
             "pageName": "events",
             "title": "NUESTROS EVENTOS",
             "subtitle": "Celebra con nosotros tus momentos más especiales. Organizamos cenas privadas, eventos temáticos, y celebraciones únicas en un entorno acogedor y elegante.",
-            "image": "paella.jpg",
-            "articles": []
+            "image": "grupos.jpg"
         },
         {
             "pageName": "takeout",
-            "image": "paella.jpg"
+            "image": "takeout.jpg"
         }
     ],
     "homeDesign": [

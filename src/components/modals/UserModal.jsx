@@ -54,7 +54,7 @@ const UserModal = ({ isOpen, onClose, onSubmit, initialData, isAdminList }) => {
                         type="text"
                         value={formData.name}
                         onChange={handleOnChange}
-                        placeholder="Introduce tu email"
+                        placeholder="Introduce tu nombre"
                         error={errors.name}
                         inputError="input--error"
                     />
@@ -84,7 +84,7 @@ const UserModal = ({ isOpen, onClose, onSubmit, initialData, isAdminList }) => {
                         type="text"
                         value={formData.street}
                         onChange={handleOnChange}
-                        placeholder="Introduce tu email"
+                        placeholder="Introduce tu dirección y número"
                         error={errors.street}
                         inputError="input--error"
                     />
@@ -99,7 +99,7 @@ const UserModal = ({ isOpen, onClose, onSubmit, initialData, isAdminList }) => {
                         type="text"
                         value={formData.city}
                         onChange={handleOnChange}
-                        placeholder="Introduce tu email"
+                        placeholder="Introduce tu ciudad"
                         error={errors.city}
                         inputError="input--error"
                     />
@@ -114,7 +114,7 @@ const UserModal = ({ isOpen, onClose, onSubmit, initialData, isAdminList }) => {
                         type="text"
                         value={formData.cp}
                         onChange={handleOnChange}
-                        placeholder="Introduce tu email"
+                        placeholder="Introduce el código postal"
                         error={errors.cp}
                         inputError="input--error"
                     />

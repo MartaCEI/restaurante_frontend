@@ -50,7 +50,7 @@ const DishModal = ({ isOpen, onClose, onSubmit, initialData, typeList }) => {
                         type="text"
                         value={formData.name}
                         onChange={handleOnChange}
-                        placeholder="Introduce tu email"
+                        placeholder="Nombre del plato"
                         error={errors.name}
                         inputError="input--error"
                     />
@@ -64,7 +64,7 @@ const DishModal = ({ isOpen, onClose, onSubmit, initialData, typeList }) => {
                         type="number"
                         value={formData.price}
                         onChange={handleOnChange}
-                        placeholder="Introduce tu email"
+                        placeholder="Precio"
                         error={errors.price}
                         inputError="input--error"
                     />
@@ -78,7 +78,7 @@ const DishModal = ({ isOpen, onClose, onSubmit, initialData, typeList }) => {
                         type="text"
                         value={formData.description}
                         onChange={handleOnChange}
-                        placeholder="Introduce tu email"
+                        placeholder="Descripción"
                         error={errors.description}
                         inputError="input--error"
                     />

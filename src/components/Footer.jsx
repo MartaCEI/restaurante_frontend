@@ -1,5 +1,4 @@
-import logo from '@/assets/react.svg'
-import { Link } from "react-router-dom";
+const VITE_FRONTEND_IMG = import.meta.env.VITE_FRONTEND_IMG;
 
 const Footer = () => {
     return (
@@ -19,20 +18,12 @@ const Footer = () => {
                     <p className="footer-content">Vienes - Domingo  12:00 - 1:00</p>
                 </div>
                 <div className="footer-left">
-                    <ul className="footer-ul">
-                        <li className="footer-li">
-                            <img src={logo} alt="" />
-                        </li>
-                        <li className="footer-li">
-                            <Link to="/register" className="form-button">Register</Link>
-                        </li>
-                        <li className="footer-li">
-                            <Link to="/register" className="form-button">Login</Link>
-                        </li>
-                    </ul>
+                    <div className="footer-imgdiv">
+                        <img src={`${VITE_FRONTEND_IMG}/logo.png`} alt="logo" className="footer-img" />
+                    </div>
                 </div>
             </div>
-            <p>© 2024 Restaurante Full Stack. Todos los derechos reservados.</p>
+            <p className="footer-p">© 2024 Restaurante Full Stack. Todos los derechos reservados.</p>
         </div>
     );
 }
