@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Footer from "@/components/Footer";
 import Header from "@/components/header/Header";
-import brickWall from './assets/images/brick-wall.jpg';
+import brickWall from '@/assets/images/brick-wall.jpg';
 
 
 function Layout() {

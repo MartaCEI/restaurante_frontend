@@ -5,12 +5,12 @@ import '@/css/newform.css'
 import { RouterProvider } from 'react-router-dom'
 import router from '@/libs/routes/routes'
 import { UserProvider } from '@/hooks/useUser'
-import { MenuProvider } from './hooks/useMenu'
-import { AdminProvider } from './hooks/useAdmin'
-import { OrderProvider } from './hooks/useOrders'
-import { CarritoProvider } from './hooks/useCarrito'
-import { EventProvider } from './hooks/useEvents'
-import { PageInfoProvider } from './hooks/usePageInfo'
+import { MenuProvider } from '@/hooks/useMenu'
+import { AdminProvider } from '@/hooks/useAdmin'
+import { OrderProvider } from '@/hooks/useOrders'
+import { CarritoProvider } from '@/hooks/useCarrito'
+import { EventProvider } from '@/hooks/useEvents'
+import { PageInfoProvider } from '@/hooks/usePageInfo'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

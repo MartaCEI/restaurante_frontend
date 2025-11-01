@@ -1,4 +1,4 @@
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useUser } from "@/hooks/useUser";
 // Aquí se muestran todas las opciones del nav más la opcion de takeout. 
 // Tambien muestra el boton del carrito, logout y el saludo. 

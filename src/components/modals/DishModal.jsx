@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Input from "@/components/forms/Input";
 import Select from "@/components/forms/Select";
-import ModalButtons from "./ModalButtons";
+import ModalButtons from "@/ModalButtons";
 
 const DishModal = ({ isOpen, onClose, onSubmit, initialData, typeList }) => {
     const [formData, setFormData] = useState(initialData);

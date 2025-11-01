@@ -4,7 +4,7 @@ import MenuButtons from "@/components/menu/MenuButtons";
 import TakeOutCard from "@/components/takeout/TakeOutCard";
 import { useMenu } from "@/hooks/useMenu";
 import { useCarrito } from "@/hooks/useCarrito";
-import { usePageInfo } from "../hooks/usePageInfo";
+import { usePageInfo } from "@/hooks/usePageInfo";
 
 const TakeOut = ({ userId }) => {
     const { filteredDishes, getDishesByType } = useMenu();

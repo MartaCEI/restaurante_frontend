@@ -1,5 +1,5 @@
 import { useNavigate, Link } from "react-router-dom";
-import { useCarrito } from "../hooks/useCarrito";
+import { useCarrito } from "@/hooks/useCarrito";
 
 const Cart = ({ userId }) => {
     const navigate = useNavigate();

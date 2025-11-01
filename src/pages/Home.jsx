@@ -1,8 +1,7 @@
 import TopPictures from "@/components/TopPictures";
-import { Link } from "react-router-dom";
 import { usePageInfo } from "@/hooks/usePageInfo";
 import { useEffect } from "react";
-import HomeCard from "../components/homes/homeCard";
+import HomeCard from "@/components/homeCard";
 
 const Home = () => {
     const { pageInfo, fetchPageInfo, fetchHomeInfo, homeInfo} = usePageInfo();
