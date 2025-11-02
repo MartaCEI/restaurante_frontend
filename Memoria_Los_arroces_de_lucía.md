@@ -1,8 +1,8 @@
 # Información técnica sobre el proyecto 
 
 ## URLs GitHub: 
-- https://github.com/MartaCEI/ca-marmota-front 
-- https://github.com/MartaCEI/ca-marmota-back 
+[- https://github.com/MartaCEI/ca-marmota-front ](https://github.com/MartaCEI/restaurante_frontend)
+[- https://github.com/MartaCEI/ca-marmota-back ](https://github.com/MartaCEI/restaurante_backend)
 
 ## URLs Vercel: 
 - https://restaurante-frontend-five.vercel.app
@@ -51,7 +51,7 @@ JWT_SECRET="32d56ee89122ce30d00f2a79f258dbff"
 ## Usuarios de la base de datos: 
 - email: marta@gmail.com 
 - password: 1234 
-- email: tomi@gmail.com 
+- email: angel@gmail.com 
 - password: 1234 
 ## Administrador: 
 - email: admin@mail.com 
