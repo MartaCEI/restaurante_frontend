@@ -33,21 +33,26 @@ const AdminEvents = () => {
         }
     };
 
-    // Guardar cambios del evento
     const handleSubmit = async (eventData) => {
-        // Forzar valor por defecto si image está vacío
-        const dataToSend = {
-            ...eventData,
-            image: eventData.image || "imagen.jpg"
-        };
-        if (isCreating) {
-            await createEvent(dataToSend); // crear nuevo evento
-        } else if (dataToSend._id) {
-            await updateEvent(dataToSend._id, dataToSend); // actualizar existente
+    // Forzar imagen por defecto si está vacía
+    const dataToSend = {
+        ...eventData,
+        image: eventData.image || "imagen.jpg"
+    };
+
+    if (isCreating) {
+        const newEvent = await createEvent(dataToSend); // crear y esperar
+        if (newEvent) {
+            setIsModalOpen(false);
+            setEditingEvent(emptyEvent);
         }
+    } else if (dataToSend._id) {
+        await updateEvent(dataToSend._id, dataToSend); // actualizar existente
         setIsModalOpen(false);
         setEditingEvent(emptyEvent);
-    };
+        await getAllEventsAdmin();
+    }
+};
 
     return (
         <section className="tables-flex">

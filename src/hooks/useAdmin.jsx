@@ -306,27 +306,31 @@ export const AdminProvider = ({ children }) => {
 
 
     const createEvent = async (eventData) => {
-    try {
-        const token = localStorage.getItem("token");
-        const res = await fetch(`${urlBackend}/admin/events`, {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json",
-                "Authorization": `Bearer ${token}`,
-            },
-            body: JSON.stringify(eventData),
-        });
+        try {
+            const token = localStorage.getItem("token");
+            const res = await fetch(`${urlBackend}/admin/events`, {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify({ ...eventData, deletedAt: null }), // forzar deletedAt
+            });
 
-        const response = await res.json();
-        if (response.status === "error") throw new Error(response.msg);
+            const response = await res.json();
+            if (response.status === "error") throw new Error(response.msg);
 
-        await getAllEventsAdmin(); // refresca la lista
-        setError(null);
-    } catch (error) {
-        console.error("[createEvent] Error:", error);
-        setError("Error al crear el evento.");
-    }
-};
+            // Actualizar la lista inmediatamente agregando el nuevo evento
+            setEvents(prev => [...prev, response.data]);
+
+            setError(null);
+            return response.data; // opcional: devolver el evento creado
+        } catch (error) {
+            console.error("[createEvent] Error:", error);
+            setError("Error al crear el evento.");
+            return null;
+        }
+    };
 
     const updateEvent = async (id, newData) => {
         try {
@@ -365,7 +369,7 @@ export const AdminProvider = ({ children }) => {
 
             const response = await res.json();
             if (response.status === "ok") {
-                getAllEventsAdmin(); 
+                getAllEventsAdmin();
             } else {
                 console.error(response.msg);
             }
