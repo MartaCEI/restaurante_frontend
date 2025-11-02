@@ -18,7 +18,7 @@ const AdminUsers = () => {
 
     useEffect(()=> {
         getAllUsers()
-    },[users])
+    },[])
 
     const handleUpdateClick = async (userId) => {
         const user = await getUserById(userId);

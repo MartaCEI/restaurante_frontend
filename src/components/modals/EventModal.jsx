@@ -3,7 +3,9 @@ import Input from "@/components/forms/Input";
 import ModalButtons from "@/components/modals/ModalButtons";
 
 const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
+    const urlBackend = import.meta.env.VITE_BACKEND_URL;
     const [formData, setFormData] = useState(initialData);
+    // const [imageFile, setImageFile] = useState(null);
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
@@ -11,27 +13,67 @@ const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
         setErrors({});
     }, [initialData]);
 
+    // const uploadImage = async (file) => {
+    //     try {
+    //         // Aquí va el código original de subida si hay archivo
+    //         const formData = new FormData();
+    //         formData.append("image", file);
+
+    //         const res = await fetch(`${urlBackend}/upload`, {
+    //             method: "POST",
+    //             body: formData
+    //         });
+
+    //         const response = await res.json();
+    //         if (response.status === "error") {
+    //             throw new Error(response.msg);
+    //         }
+    //         console.log("Imagen subida:", response.data);
+    //         return response.data.url;
+
+    //     } catch (error) {
+    //         console.error("Error al subir la imagen:", error);
+    //         // Si hay error, se envia una imagen por defecto
+    //         return "https://img.freepik.com/vector-gratis/concepto-feliz-cumpleanos_23-2148484501.jpg";
+    //     }
+    // };
+
     const handleOnChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
         setErrors(prev => ({ ...prev, [name]: "" }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const newErrors = {};
         if (!formData.title?.trim()) newErrors.title = "El título es obligatorio";
         if (!formData.description?.trim()) newErrors.description = "La descripción es obligatoria";
         if (!formData.date?.trim()) newErrors.date = "La fecha es obligatoria";
         if (!formData.time?.trim()) newErrors.time = "La hora es obligatoria";
-        if (!formData.img?.trim()) newErrors.img = "La URL de la imagen es obligatoria";
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
             return;
         }
 
-        onSubmit(formData);
+        // // Si hay imagen nueva, la subimos antes de crear el evento
+        // let imageUrl = formData.image || null;
+        // if (imageFile) {
+        //     const uploadedUrl = await uploadImage(imageFile);
+        //     if (!uploadedUrl) {
+        //         setErrors({ image: "Error al subir la imagen" });
+        //         return;
+        //     }
+        //     imageUrl = uploadedUrl;
+        // }
+        // Forzar imagen por defecto si está vacía
+        const dataToSubmit = {
+            ...formData,
+            image: formData.image || "imagen.jpg" // <-- valor por defecto
+        };
+
+        onSubmit(dataToSubmit);
     };
 
     if (!isOpen) return null;
@@ -97,21 +139,18 @@ const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
                         error={errors.time}
                         inputError="input--error"
                     />
-
-                    <Input
+                    {/* <Input
                         divClassName="form-labels"
                         inputClassName="input"
                         labelClassName="form-label"
                         spanLabel="input-label"
-                        name="img"
-                        label="Imagen nombre.ext*"
-                        type="text"
-                        value={formData.img}
-                        onChange={handleOnChange}
-                        placeholder="Ej: imagen.jpg"
-                        error={errors.img}
+                        name="image"
+                        label="Image*"
+                        type="file"
+                        onChange={(e) => setImageFile(e.target.files[0])}
+                        error={errors.image}
                         inputError="input--error"
-                    />
+                    /> */}
                 </div>
                 <ModalButtons handleSubmit={handleSubmit} onClose={onClose} />
             </div>

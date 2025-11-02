@@ -26,19 +26,19 @@
             "title": "Nuestro Menú",
             "link": "/menu",
             "button": "Menú",
-            "image": "paella.jpg"
+            "image": "menu.jpg"
         },
         {
             "title": "Para llevar",
             "link": "/takeout",
-            "button": "takeout",
-            "image": "paella.jpg"
+            "button": "Ordenar",
+            "image": "takeout.jpg"
         },
         {
             "title": "eventos",
-            "link": "/eventos",
+            "link": "/events",
             "button": "eventos",
-            "image": "paella.jpg"
+            "image": "grupos.jpg"
         }
     ]
 }

@@ -6,14 +6,14 @@ import { useAdmin } from "@/hooks/useAdmin";
 const AdminEvents = () => {
     const { events, getEventById, updateEvent, createEvent, softDeleteEvent, getAllEventsAdmin } = useAdmin();
 
-    const emptyEvent = { title: "", description: "", date: "", time: "", img: "" };
+    const emptyEvent = { title: "", description: "", date: "", time: "", image: "" };
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingEvent, setEditingEvent] = useState(emptyEvent);
     const [isCreating, setIsCreating] = useState(false);
 
-    useEffect(()=> {
+    useEffect(() => {
         getAllEventsAdmin();
-    },[events])
+    }, [])
 
     const handleCreateClick = () => {
         setEditingEvent(emptyEvent);
@@ -31,10 +31,15 @@ const AdminEvents = () => {
     };
 
     const handleSubmit = async (eventData) => {
+        // Forzar valor por defecto si image está vacío
+        const dataToSend = {
+            ...eventData,
+            image: eventData.image || "imagen.jpg"
+        };
         if (isCreating) {
-            await createEvent(eventData); // crear nuevo evento
-        } else if (eventData._id) {
-            await updateEvent(eventData._id, eventData); // actualizar existente
+            await createEvent(dataToSend); // crear nuevo evento
+        } else if (dataToSend._id) {
+            await updateEvent(dataToSend._id, dataToSend); // actualizar existente
         }
         setIsModalOpen(false);
         setEditingEvent(emptyEvent);

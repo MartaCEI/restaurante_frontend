@@ -57,13 +57,13 @@ const OrderModal = ({ isOpen, onClose, onSubmit, initialData, statusList }) => {
                     selectClassName="select"
                     labelClassName="form-label"
                     spanLabel="input-label"
-                    name="isAdmin"
+                    name="orderStatus"
                     label="Administrador"
-                    value={formData.isAdmin}
+                    value={formData.orderStatus}
                     onChange={handleOnChange}
                     lista={statusList}
                     firstOptionLabel="Selecciona una opción"
-                    error={errors.isAdmin}
+                    error={errors.orderStatus}
                     inputError="input--error" />
 
                 <ModalButtons handleSubmit={handleSubmit} onClose={onClose} />

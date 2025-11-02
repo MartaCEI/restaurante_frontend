@@ -8,7 +8,7 @@ const AdminMenu = () => {
 
         useEffect(()=>{
         getAllDishes();
-    },[dishes]);
+    },[]);
     
     const typeList = [
         { value: "entrantes", label: "entrantes" },

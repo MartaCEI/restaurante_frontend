@@ -304,6 +304,7 @@ export const AdminProvider = ({ children }) => {
         }
     };
 
+
     const createEvent = async (eventData) => {
     try {
         const token = localStorage.getItem("token");
