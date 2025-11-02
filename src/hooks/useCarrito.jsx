@@ -121,6 +121,7 @@ export const CarritoProvider = ({ children }) => {
             totalItems,
             totalPrice,
             error,
+            carritoArray,
             agregarItem,
             quitarItem,
             limpiarCarrito,
