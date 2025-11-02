@@ -1,0 +1,81 @@
+[{
+  "_id": {
+    "$oid": "6903454ed1c7af7074e3bbf4"
+  },
+  "title": "Halloween",
+  "description": "Prepárate para una noche terroríficamente divertida. Ven disfrazado y participa en concursos, música y actividades de miedo.",
+  "date": "31/10/2025",
+  "time": "19:00 - 23:59",
+  "deletedAt": null,
+  "updatedAt": {
+    "$date": "2025-11-02T00:04:58.106Z"
+  },
+  "image": "halloween.jpg"
+},
+{
+  "_id": {
+    "$oid": "6903454ed1c7af7074e3bbf5"
+  },
+  "title": "Todos los Santos",
+  "description": "Acompáñanos en una jornada de homenaje y reflexión para recordar a nuestros seres queridos con respeto y cariño.",
+  "date": "01/11/2025",
+  "time": "10:00 - 14:00",
+  "deletedAt": null,
+  "image": "diasantos.jpg"
+},
+{
+  "_id": {
+    "$oid": "6903454ed1c7af7074e3bbf6"
+  },
+  "title": "Día de Navidad",
+  "description": "Ven con nosotros a celebrar el Día de Navidad con música, comida y mucha alegría. Disfruta de una noche mágica en compañía de tus seres queridos.",
+  "date": "25/12/2025",
+  "time": "20:00 - 00:00",
+  "img": "imagen.jpg",
+  "deletedAt": null
+},
+{
+  "_id": {
+    "$oid": "6903454ed1c7af7074e3bbf7"
+  },
+  "title": "Año Nuevo",
+  "description": "Despide el año y da la bienvenida al nuevo con una gran fiesta llena de luces, baile y buenos deseos. ¡No te lo pierdas!",
+  "date": "31/12/2025",
+  "time": "21:00 - 02:00",
+  "deletedAt": null,
+  "image": "anionuevo.jpg"
+},
+{
+  "_id": {
+    "$oid": "6903595088f62033aed76f10"
+  },
+  "title": "Valentine´s day",
+  "description": "Valentine´s day",
+  "date": "14/02/2026",
+  "time": "12:00",
+  "deletedAt": null,
+  "createdAt": {
+    "$date": "2025-10-30T12:25:52.971Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-30T12:25:52.971Z"
+  },
+  "image": "imagen.jpg"
+},
+{
+  "_id": {
+    "$oid": "690762aa04e945eb5e90b218"
+  },
+  "title": "Entrega Proyecto",
+  "description": "Este es el día que entrego el proyecto ",
+  "date": "02/11/2025",
+  "time": "23:59",
+  "deletedAt": null,
+  "image": "imagen.jpg",
+  "createdAt": {
+    "$date": "2025-11-02T13:54:50.624Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-02T14:04:24.393Z"
+  }
+}]

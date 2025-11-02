@@ -1,0 +1,57 @@
+[{
+  "_id": {
+    "$oid": "6901da25163cf49c953c5e64"
+  },
+  "name": "admin",
+  "username": "admin@mail.com",
+  "password": "$2b$10$vYSO8FoWmgHS0sgytYGo.eAhdp1cXlLaZjhiBNpRWN2vBtSzNwlIS",
+  "street": "calle de las calles",
+  "city": "VALENCIA",
+  "cp": "46022",
+  "isAdmin": true,
+  "deletedAt": null,
+  "createdAt": {
+    "$date": "2025-10-29T09:11:01.377Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-29T09:11:01.377Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6903b06729721c66afbe074f"
+  },
+  "name": "Angel",
+  "username": "angel@gmail.com",
+  "password": "$2b$10$7B0K.qvweKYlL1wTF4R5mOjOIYFigFGZXC6s/urnhjDeVRJmpgZZe",
+  "street": "Calle la pilarica",
+  "city": "Valencia",
+  "cp": "46555",
+  "isAdmin": false,
+  "deletedAt": null,
+  "createdAt": {
+    "$date": "2025-10-30T18:37:27.633Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-30T18:37:27.633Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6904e2b081213c94061f5489"
+  },
+  "name": "Lola",
+  "username": "lola@mail.com",
+  "password": "$2b$10$sm6rZi.FjtkgaAd4MbxSx.rsdYm7SvDQDAyQXMzsjgHZdnEmzR1OW",
+  "street": "Calle de la prosperidad 5",
+  "city": "Valencia",
+  "cp": "46000",
+  "isAdmin": false,
+  "deletedAt": null,
+  "createdAt": {
+    "$date": "2025-10-31T16:24:16.894Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-31T16:24:16.894Z"
+  }
+}]

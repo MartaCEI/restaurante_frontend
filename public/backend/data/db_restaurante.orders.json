@@ -1,0 +1,292 @@
+[{
+  "_id": {
+    "$oid": "69037c878a8a1b4946eab883"
+  },
+  "userId": {
+    "$oid": "68ffb8c5a79fd64d79dfedde"
+  },
+  "items": [
+    {
+      "menuId": {
+        "$oid": "6900a081f8cd3d3fe81962f8"
+      },
+      "quantity": 4,
+      "_id": {
+        "$oid": "69037c878a8a1b4946eab884"
+      },
+      "item": {
+        "deletedAt": null,
+        "_id": "6900a081f8cd3d3fe81962f8",
+        "type": "entrantes",
+        "name": "Tellinas a la plancha",
+        "description": "Tellinas frescas según temporada, salteadas y terminadas con limón.",
+        "price": 13
+      }
+    },
+    {
+      "menuId": {
+        "$oid": "6900a081f8cd3d3fe81962f9"
+      },
+      "quantity": 5,
+      "_id": {
+        "$oid": "69037c878a8a1b4946eab885"
+      },
+      "item": {
+        "deletedAt": null,
+        "_id": "6900a081f8cd3d3fe81962f9",
+        "type": "entrantes",
+        "name": "Tabla ibérica y quesos",
+        "description": "Selección de jamón ibérico y quesos curados.",
+        "price": 19.5
+      }
+    },
+    {
+      "menuId": {
+        "$oid": "6900a081f8cd3d3fe81962fb"
+      },
+      "quantity": 4,
+      "_id": {
+        "$oid": "69037c878a8a1b4946eab886"
+      },
+      "item": {
+        "deletedAt": null,
+        "_id": "6900a081f8cd3d3fe81962fb",
+        "type": "entrantes",
+        "name": "Gambas al ajillo con toque picante",
+        "description": "Gambas salteadas con ajo y guindilla, pan para mojar.",
+        "price": 14.5
+      }
+    },
+    {
+      "menuId": {
+        "$oid": "6900a081f8cd3d3fe81962fa"
+      },
+      "quantity": 4,
+      "_id": {
+        "$oid": "69037c878a8a1b4946eab887"
+      },
+      "item": {
+        "deletedAt": null,
+        "_id": "6900a081f8cd3d3fe81962fa",
+        "type": "entrantes",
+        "name": "Calamares crujientes",
+        "description": "Anillas de calamar rebozadas y fritas, con alioli casero.",
+        "price": 13.5
+      }
+    }
+  ],
+  "totalPrice": 261.5,
+  "orderStatus": "cancelled",
+  "createdAt": {
+    "$date": "2025-10-30T14:56:07.501Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-02T00:52:04.315Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6904cab8e47f1405ae36cb3e"
+  },
+  "userId": {
+    "$oid": "6903b06729721c66afbe074f"
+  },
+  "items": [
+    {
+      "menuId": {
+        "$oid": "6900a081f8cd3d3fe81962fb"
+      },
+      "quantity": 2,
+      "_id": {
+        "$oid": "6904cab8e47f1405ae36cb3f"
+      },
+      "item": {
+        "deletedAt": null,
+        "_id": "6900a081f8cd3d3fe81962fb",
+        "type": "entrantes",
+        "name": "Gambas al ajillo con toque picante",
+        "description": "Gambas salteadas con ajo y guindilla, pan para mojar.",
+        "price": 14.5
+      }
+    },
+    {
+      "menuId": {
+        "$oid": "6900a081f8cd3d3fe81962fc"
+      },
+      "quantity": 2,
+      "_id": {
+        "$oid": "6904cab8e47f1405ae36cb40"
+      },
+      "item": {
+        "deletedAt": null,
+        "_id": "6900a081f8cd3d3fe81962fc",
+        "type": "entrantes",
+        "name": "Pulpo a la brasa sobre patata",
+        "description": "Taco de pulpo asado con cama de patata y pimentón.",
+        "price": 21
+      }
+    },
+    {
+      "menuId": {
+        "$oid": "6900a081f8cd3d3fe81962fe"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "6904cab8e47f1405ae36cb41"
+      },
+      "item": {
+        "deletedAt": null,
+        "_id": "6900a081f8cd3d3fe81962fe",
+        "type": "entrantes",
+        "name": "Fritura mixta del día",
+        "description": "Selección de pescados pequeños rebozados (boquerón, calamar, bacaladilla).",
+        "price": 17.5
+      }
+    },
+    {
+      "menuId": {
+        "$oid": "6900a081f8cd3d3fe81962f9"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "6904cab8e47f1405ae36cb42"
+      },
+      "item": {
+        "deletedAt": null,
+        "_id": "6900a081f8cd3d3fe81962f9",
+        "type": "entrantes",
+        "name": "Tabla ibérica y quesos",
+        "description": "Selección de jamón ibérico y quesos curados.",
+        "price": 19.5
+      }
+    },
+    {
+      "menuId": {
+        "$oid": "6900a081f8cd3d3fe81962fa"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "6904cab8e47f1405ae36cb43"
+      },
+      "item": {
+        "deletedAt": null,
+        "_id": "6900a081f8cd3d3fe81962fa",
+        "type": "entrantes",
+        "name": "Calamares crujientes",
+        "description": "Anillas de calamar rebozadas y fritas, con alioli casero.",
+        "price": 13.5
+      }
+    }
+  ],
+  "totalPrice": 121.5,
+  "orderStatus": "pending",
+  "createdAt": {
+    "$date": "2025-10-31T14:42:00.435Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-31T14:42:00.435Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "690502f930bc3376629b8287"
+  },
+  "userId": {
+    "$oid": "6904e2b081213c94061f5489"
+  },
+  "items": [
+    {
+      "menuId": {
+        "$oid": "6900a081f8cd3d3fe81962f9"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "690502f930bc3376629b8288"
+      },
+      "item": {
+        "deletedAt": null,
+        "_id": "6900a081f8cd3d3fe81962f9",
+        "type": "entrantes",
+        "name": "Tabla ibérica y quesos",
+        "description": "Selección de jamón ibérico y quesos curados.",
+        "price": 19.5
+      }
+    },
+    {
+      "menuId": {
+        "$oid": "6900a081f8cd3d3fe81962fc"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "690502f930bc3376629b8289"
+      },
+      "item": {
+        "deletedAt": null,
+        "_id": "6900a081f8cd3d3fe81962fc",
+        "type": "entrantes",
+        "name": "Pulpo a la brasa sobre patata",
+        "description": "Taco de pulpo asado con cama de patata y pimentón.",
+        "price": 21
+      }
+    },
+    {
+      "menuId": {
+        "$oid": "6900a081f8cd3d3fe8196300"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "690502f930bc3376629b828a"
+      },
+      "item": {
+        "deletedAt": null,
+        "_id": "6900a081f8cd3d3fe8196300",
+        "type": "entrantes",
+        "name": "Mejillones en salsa del chef",
+        "description": "Mejillones al vapor con salsa especiada de la casa.",
+        "price": 12.5
+      }
+    },
+    {
+      "menuId": {
+        "$oid": "6900a081f8cd3d3fe8196302"
+      },
+      "quantity": 2,
+      "_id": {
+        "$oid": "690502f930bc3376629b828b"
+      },
+      "item": {
+        "deletedAt": null,
+        "_id": "6900a081f8cd3d3fe8196302",
+        "type": "entrantes",
+        "name": "Patatas bravas caseras",
+        "description": "Patatas cortadas a mano con salsa brava y alioli.",
+        "price": 7.5
+      }
+    },
+    {
+      "menuId": {
+        "$oid": "6900a081f8cd3d3fe8196314"
+      },
+      "quantity": 3,
+      "_id": {
+        "$oid": "690502f930bc3376629b828c"
+      },
+      "item": {
+        "deletedAt": null,
+        "_id": "6900a081f8cd3d3fe8196314",
+        "type": "carnes",
+        "name": "Chuletitas de lechal",
+        "description": "Chuletitas de lechal a la parrilla con ajetes y patatas.",
+        "price": 21.5
+      }
+    }
+  ],
+  "totalPrice": 132.5,
+  "orderStatus": "pending",
+  "createdAt": {
+    "$date": "2025-10-31T18:42:01.992Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-31T18:44:31.561Z"
+  }
+}]

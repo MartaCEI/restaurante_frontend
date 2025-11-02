@@ -1,0 +1,476 @@
+[{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe81962f7"
+  },
+  "type": "entrantes",
+  "name": "Ensalada de brotes",
+  "description": "Mezcla de brotes tiernos, gambones pelados y vinagreta cítrica.",
+  "price": 14.5,
+  "updatedAt": {
+    "$date": "2025-10-30T09:58:47.945Z"
+  },
+  "deletedAt": "Thu Oct 30 2025 10:58:47 GMT+0100 (hora estándar de Europa central)"
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe81962f8"
+  },
+  "type": "entrantes",
+  "name": "Tellinas a la plancha",
+  "description": "Tellinas frescas según temporada, salteadas y terminadas con limón.",
+  "price": 13,
+  "deletedAt": "Fri Oct 31 2025 12:32:42 GMT+0100 (hora estándar de Europa central)",
+  "updatedAt": {
+    "$date": "2025-10-31T11:32:42.533Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe81962f9"
+  },
+  "type": "entrantes",
+  "name": "Tabla ibérica y quesos",
+  "description": "Selección de jamón ibérico y quesos curados.",
+  "price": 19.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe81962fa"
+  },
+  "type": "entrantes",
+  "name": "Calamares crujientes",
+  "description": "Anillas de calamar rebozadas y fritas, con alioli casero.",
+  "price": 13.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe81962fb"
+  },
+  "type": "entrantes",
+  "name": "Gambas al ajillo con toque picante",
+  "description": "Gambas salteadas con ajo y guindilla, pan para mojar.",
+  "price": 14.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe81962fc"
+  },
+  "type": "entrantes",
+  "name": "Pulpo a la brasa sobre patata",
+  "description": "Taco de pulpo asado con cama de patata y pimentón.",
+  "price": 21
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe81962fd"
+  },
+  "type": "entrantes",
+  "name": "Alcachofas salteadas con jamón",
+  "description": "Alcachofas de temporada con jamón ibérico y un toque de limón.",
+  "price": 14
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe81962fe"
+  },
+  "type": "entrantes",
+  "name": "Fritura mixta del día",
+  "description": "Selección de pescados pequeños rebozados (boquerón, calamar, bacaladilla).",
+  "price": 17.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe81962ff"
+  },
+  "type": "entrantes",
+  "name": "Revuelto de setas, gambas y jamón",
+  "description": "Revuelto cremoso de setas otoñales y gambas.",
+  "price": 15,
+  "updatedAt": {
+    "$date": "2025-10-30T12:24:54.408Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196300"
+  },
+  "type": "entrantes",
+  "name": "Mejillones en salsa del chef",
+  "description": "Mejillones al vapor con salsa especiada de la casa.",
+  "price": 12.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196301"
+  },
+  "type": "entrantes",
+  "name": "Cigalas salteadas",
+  "description": "Cigalas salteadas con ajos tiernos y perejil.",
+  "price": 17.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196302"
+  },
+  "type": "entrantes",
+  "name": "Patatas bravas caseras",
+  "description": "Patatas cortadas a mano con salsa brava y alioli.",
+  "price": 7.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196303"
+  },
+  "type": "arroces",
+  "name": "Paella Valenciana (mín. 2 pax)",
+  "description": "Paella tradicional con pollo, conejo y verduras autóctonas.",
+  "price": 14.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196304"
+  },
+  "type": "arroces",
+  "name": "Arroz a banda (por persona, mínimo 2)",
+  "description": "Arroz separado del fumet, con alioli de ajo asado.",
+  "price": 18.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196305"
+  },
+  "type": "arroces",
+  "name": "Paella de marisco (mín. 2 pax)",
+  "description": "Arroz con gamba, mejillón, calamar y pescado de la lonja.",
+  "price": 22
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196306"
+  },
+  "type": "arroces",
+  "name": "Arroz del senyoret (mín. 2 pax)",
+  "description": "Arroz con marisco pelado para comer sin trabajo previo.",
+  "price": 19.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196307"
+  },
+  "type": "arroces",
+  "name": "Fideuá tradicional",
+  "description": "Fideuá de fideo fino con alioli y romero.",
+  "price": 18.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196308"
+  },
+  "type": "arroces",
+  "name": "Arroz negro con sepia",
+  "description": "Arroz en su tinta con trozos de sepia y alioli.",
+  "price": 20
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196309"
+  },
+  "type": "arroces",
+  "name": "Meloso de bogavante (mín. 2 pax)",
+  "description": "Arroz meloso con bogavante, servicio por encargo.",
+  "price": 25
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe819630a"
+  },
+  "type": "arroces",
+  "name": "Paella de verduras (mín. 2 pax)",
+  "description": "Paella con verduras frescas de temporada y toque de romero.",
+  "price": 13.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe819630b"
+  },
+  "type": "arroces",
+  "name": "Paella de pato y setas (por persona)",
+  "description": "Paella melosa con confit de pato y setas silvestres.",
+  "price": 20.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe819630c"
+  },
+  "type": "arroces",
+  "name": "Arroz al horno (por encargo)",
+  "description": "Arroz al horno tradicional, servido en cazuela.",
+  "price": 16
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe819630d"
+  },
+  "type": "arroces",
+  "name": "Fideuá negra (por persona)",
+  "description": "Fideuá con tinta de calamar y marisco pelado.",
+  "price": 19.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe819630e"
+  },
+  "type": "arroces",
+  "name": "Meloso de vieiras y gambas",
+  "description": "Arroz meloso con vieiras frescas y gambas.",
+  "price": 22.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe819630f"
+  },
+  "type": "pescados",
+  "name": "Lubina a la espalda",
+  "description": "Lubina abierta al horno con guarnición de verduras.",
+  "price": 20.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196310"
+  },
+  "type": "pescados",
+  "name": "Lomo de atún a la plancha",
+  "description": "Bonito de la costa marcado a la plancha con emulsión ligera.",
+  "price": 21.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196311"
+  },
+  "type": "pescados",
+  "name": "Bacalao confitado con muselina",
+  "description": "Bacalao confitado a baja temperatura con muselina de ajo.",
+  "price": 23.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196312"
+  },
+  "type": "pescados",
+  "name": "Salmón al papillote",
+  "description": "Salmón cocinado al papillote con verduras y toque cítrico.",
+  "price": 19.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196313"
+  },
+  "type": "carnes",
+  "name": "Entrecot a la parrilla",
+  "description": "Entrecot de ternera a la brasa con patatas rústicas.",
+  "price": 22.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196314"
+  },
+  "type": "carnes",
+  "name": "Chuletitas de lechal",
+  "description": "Chuletitas de lechal a la parrilla con ajetes y patatas.",
+  "price": 21.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196315"
+  },
+  "type": "carnes",
+  "name": "Solomillo con reducción de vino",
+  "description": "Solomillo de ternera con salsa reducida y verduras salteadas.",
+  "price": 23
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196316"
+  },
+  "type": "carnes",
+  "name": "Burger trufada",
+  "description": "200g de ternera, queso cremoso, cebolla caramelizada y toque de trufa.",
+  "price": 15
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196317"
+  },
+  "type": "carnes",
+  "name": "Burger mediterránea",
+  "description": "200g ternera, tomate seco, rúcula y alioli de ajo tostado.",
+  "price": 14
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196318"
+  },
+  "type": "postres",
+  "name": "Coulant de chocolate",
+  "description": "Coulant con interior cremoso de chocolate y nata montada.",
+  "price": 5.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe8196319"
+  },
+  "type": "postres",
+  "name": "Tarta de queso con arándanos",
+  "description": "Porción de tarta de queso con coulis de arándanos.",
+  "price": 5.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe819631a"
+  },
+  "type": "postres",
+  "name": "Flan casero de mamá ",
+  "description": "Flan tradicional hecho en casa con salsa de caramelo.",
+  "price": 4.5,
+  "updatedAt": {
+    "$date": "2025-10-31T18:43:37.789Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe819631b"
+  },
+  "type": "postres",
+  "name": "Tiramisú",
+  "description": "Tiramisú clásico con café intenso y cacao.",
+  "price": 5.5
+},
+{
+  "_id": {
+    "$oid": "6900a081f8cd3d3fe819631c"
+  },
+  "type": "postres",
+  "name": "Para eliminar",
+  "description": "Sorbete refrescante de limón, perfecto para limpiar el paladar.",
+  "price": 3.5,
+  "updatedAt": {
+    "$date": "2025-10-30T12:25:03.813Z"
+  },
+  "deletedAt": "Thu Oct 30 2025 13:25:03 GMT+0100 (hora estándar de Europa central)"
+},
+{
+  "_id": {
+    "$oid": "69025c164a40f8d3b19631b2"
+  },
+  "type": "entrantes",
+  "name": "admin",
+  "description": "Habitación 2 ipsum dolor sit amet consectetur adipisicing elit. Eos vero autem at deserunt cumque, quae natus, magni ab consequuntur iste consequatur ullam provident, quam distinctio error. Illo debitis voluptates expedita? Autem, libero explicabo? Amet consectetur pariatur est, nulla, autem sunt totam quidem harum magnam, dolore vitae aspernatur. Dicta, dolorem ad!",
+  "price": 7,
+  "imageUrl": "https://picsum.photos/200",
+  "deletedAt": "Wed Oct 29 2025 21:55:20 GMT+0100 (hora estándar de Europa central)",
+  "createdAt": {
+    "$date": "2025-10-29T18:25:26.496Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-29T20:55:20.535Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6902a081f8cd3d3fe8196407"
+  },
+  "type": "vinos",
+  "name": "Vino blanco Verdejo",
+  "description": "Vino blanco joven, afrutado, D.O. Rueda.",
+  "price": 3.5
+},
+{
+  "_id": {
+    "$oid": "6902a081f8cd3d3fe8196408"
+  },
+  "type": "vinos",
+  "name": "Vino tinto Rioja crianza",
+  "description": "Vino tinto con cuerpo y notas de roble, D.O.Ca Rioja.",
+  "price": 4
+},
+{
+  "_id": {
+    "$oid": "6902a081f8cd3d3fe8196409"
+  },
+  "type": "vinos",
+  "name": "Vino rosado de la casa",
+  "description": "Vino rosado fresco y afrutado, ideal para acompañar arroces.",
+  "price": 3.5
+},
+{
+  "_id": {
+    "$oid": "6902a081f8cd3d3fe819640a"
+  },
+  "type": "vinos",
+  "name": "Cava brut nature",
+  "description": "Cava seco con burbuja fina, perfecto para brindar.",
+  "price": 5
+},
+{
+  "_id": {
+    "$oid": "6902a081f8cd3d3fe8196400"
+  },
+  "type": "bebidas",
+  "name": "Agua mineral",
+  "description": "Agua natural o con gas, botella de 50cl.",
+  "price": 2.2
+},
+{
+  "_id": {
+    "$oid": "6902a081f8cd3d3fe8196401"
+  },
+  "type": "bebidas",
+  "name": "Refresco de cola",
+  "description": "Coca-Cola, Coca-Cola Zero o similar.",
+  "price": 2.8
+},
+{
+  "_id": {
+    "$oid": "6902a081f8cd3d3fe8196402"
+  },
+  "type": "bebidas",
+  "name": "Refresco de naranja o limón",
+  "description": "Refrescos cítricos servidos bien fríos.",
+  "price": 2.8
+},
+{
+  "_id": {
+    "$oid": "6902a081f8cd3d3fe8196403"
+  },
+  "type": "bebidas",
+  "name": "Tónica premium",
+  "description": "Tónica con notas de cítricos y especias.",
+  "price": 3.2
+},
+{
+  "_id": {
+    "$oid": "6902a081f8cd3d3fe8196404"
+  },
+  "type": "cervezas",
+  "name": "Cerveza nacional",
+  "description": "Cerveza tipo lager de producción local (33cl).",
+  "price": 3
+},
+{
+  "_id": {
+    "$oid": "6902a081f8cd3d3fe8196405"
+  },
+  "type": "bebidas",
+  "name": "Cerveza artesanal IPA",
+  "description": "Cerveza artesanal con notas cítricas y amargas.",
+  "price": 4.5
+},
+{
+  "_id": {
+    "$oid": "6902a081f8cd3d3fe8196406"
+  },
+  "type": "bebidas",
+  "name": "Cerveza sin alcohol",
+  "description": "Cerveza sin alcohol, sabor suave y refrescante.",
+  "price": 2.8
+}]
