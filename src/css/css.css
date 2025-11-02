@@ -166,7 +166,7 @@ table * {
     font-weight: 500;
     font-size: 0.9rem;
     text-transform: uppercase;
-    color: #000;
+    color: var(--text-primary);
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -176,7 +176,7 @@ table * {
 
 .nav-a:hover,
 .header-button:hover {
-    color: #c49a6c;
+    color: var(--hover-color);
 }
 
 .header-user {
@@ -189,7 +189,7 @@ table * {
     font-weight: 500;
     font-size: 1rem;
     text-transform: uppercase;
-    color: #ac413c
+    color: var(--text-secondary);
 }
 
 .header-buttons {
@@ -214,7 +214,7 @@ table * {
 /* Línea divisoria del footer */
 .footer-line {
     height: 2px;
-    background-color: #000;
+    background-color:  var(--text-primary);
     width: 80%;
 }
 
@@ -326,9 +326,9 @@ table * {
     line-height: 2.5rem;
     text-transform: uppercase;
     text-align: center;
-    color: #000;
-    border-top: 3px solid #000;
-    border-bottom: 2px solid #000;
+    color:  var(--text-primary);
+    border-top: 3px solid  var(--text-primary);
+    border-bottom: 2px solid  var(--text-primary);
 }
 
 /* ============================================================
@@ -366,9 +366,9 @@ table * {
     line-height: 2.5rem;
     text-transform: uppercase;
     text-align: center;
-    color: #000;
-    border-top: 3px solid #000;
-    border-bottom: 2px solid #000;
+    color:  var(--text-primary);
+    border-top: 3px solid  var(--text-primary);
+    border-bottom: 2px solid  var(--text-primary);
 }
 
 /* Cuadrícula de platos */
@@ -418,8 +418,8 @@ table * {
     font-size: 1rem;
     text-transform: uppercase;
     text-align: center;
-    color: #fff;
-    background-color: #ac413c;
+    color: var(--text-tertiary);
+    background-color: var(--text-secondary);
     border: none;
     cursor: pointer;
     text-decoration: none;
@@ -428,7 +428,7 @@ table * {
 
 .menu-button:hover {
     background-color: #c14944;
-    color: #fff;
+    color: var(--text-tertiary);
 }
 
 /* ============================================================
@@ -440,9 +440,9 @@ table * {
     font-size: 2rem;
     text-transform: uppercase;
     text-align: center;
-    color: #000;
-    border-top: 2px solid #000;
-    border-bottom: 2px solid #000;
+    color:  var(--text-primary);
+    border-top: 2px solid  var(--text-primary);
+    border-bottom: 2px solid  var(--text-primary);
 }
 
 /* Contenedor principal de secciones en home */
@@ -495,8 +495,8 @@ table * {
     font-size: 1rem;
     text-transform: uppercase;
     text-align: center;
-    color: #fff;
-    background-color: #ac413c;
+    color: var(--text-tertiary);
+    background-color: var(--text-secondary);
     border: none;
     cursor: pointer;
     text-decoration: none;
@@ -506,11 +506,11 @@ table * {
 
 .menu-button:hover {
     background-color: #c14944;
-    color: #fff;
+    color: var(--text-tertiary);
 }
 
 /* ============================================================
-   SECCIÓN EVENTS (EVENTOS)
+    SECCIÓN EVENTS (EVENTOS)
    ============================================================ */
 
 /* Contenedor principal de la sección */
@@ -584,7 +584,7 @@ table * {
 }
 
 /* ============================================================
-   SECCIÓN TAKEOUT (CARRITO / PEDIDOS)
+    SECCIÓN TAKEOUT (CARRITO / PEDIDOS)
    ============================================================ */
 
 /* Contador de productos */
@@ -605,8 +605,8 @@ table * {
     font-size: 1rem;
     text-transform: uppercase;
     text-align: center;
-    color: #fff;
-    background-color: #ac413c;
+    color: var(--text-tertiary);
+    background-color: var(--text-secondary);
     border: none;
     cursor: pointer;
     text-decoration: none;
@@ -667,10 +667,10 @@ table * {
     align-items: center;
     width: 1.5rem;
     height: 1.5rem;
-    background-color: #ac413c;
+    background-color: var(--text-secondary);
     border-radius: 50%;
     border: none;
-    color: #fff;
+    color: var(--text-tertiary);
 }
 
 .cart-a {
@@ -678,7 +678,7 @@ table * {
     font-weight: 500;
     font-size: 0.9rem;
     text-transform: uppercase;
-    color: #ac413c;
+    color: var(--text-secondary);
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -687,11 +687,11 @@ table * {
 }
 
 .cart-a:hover {
-    color: #c49a6c;
+    color: var(--hover-color);
 }
 
 /* ============================================================
-   MEDIA QUERIES (RESPONSIVE DESIGN)
+    MEDIA QUERIES (RESPONSIVE DESIGN)
    ============================================================ */
 
 /* ---------- TABLETS (>=480px y <768px) ---------- */
