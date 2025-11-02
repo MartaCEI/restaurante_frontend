@@ -8,7 +8,6 @@ import { useEffect } from "react";
 const Events = () => {
     const {events, error} = useEvents();
         const { pageInfo, fetchPageInfo } = usePageInfo();
-
         useEffect(() => {
             fetchPageInfo("events");
         }, []);

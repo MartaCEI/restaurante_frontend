@@ -3,6 +3,7 @@ import { useCarrito } from "@/hooks/useCarrito";
 
 const Cart = ({ userId }) => {
     const navigate = useNavigate();
+    // Obtener datos y funciones del hook useCarrito
     const {
         carritoArray,
         totalItems,
@@ -15,9 +16,11 @@ const Cart = ({ userId }) => {
         error
     } = useCarrito(userId);
 
+    // Función para manejar el checkout y redirigir a la página de resumen. Al apretar al botón "Realizar Pedido" se ejecuta esta función y se guarda el pedido en la BBDD.
     const handleCheckout = async () => {
         const orderCreated = await checkout();
         if (orderCreated) {
+            // Redirigir a la página de resumen del pedido y pasamos los datos del pedido creado en un state para poder mostrarlos en la página summary. 
             navigate("/summary", { state: { order: orderCreated } });
         }
     };
@@ -29,12 +32,14 @@ const Cart = ({ userId }) => {
                 <p className="cart-empty">El carrito está vacío</p>
             ) : (
                 <ul className="cart-ul">
+                {/* hacemos un map sobre el carritoArray para mostrar los productos guardados de la pagina takeout.jsx */}
                     {carritoArray.map(producto => (
                         <li key={producto.menuId} className="cart-li">
                             <span className="cart-info">
                                 {producto.item?.name} x {producto.quantity} = $
                                 {producto.item?.price * producto.quantity || 0}
                             </span>
+                            {/* Botones para modificar la cantidad dentro del carrito. Funcionalidad del useCarrito */}
                             <div className="cart-buttons">
                                 <button
                                     onClick={() => quitarItem(producto.menuId)}
@@ -61,9 +66,7 @@ const Cart = ({ userId }) => {
                 </ul>
             )
             }
-
-
-
+            {/* Mostrar mensaje de error si existe */}
             {error && <p className="cart-error">{error}</p>}
             <div className="cart-buttons">
                 <button

@@ -1,8 +1,8 @@
-
 import { useLocation, Link } from "react-router-dom";
 
 const Summary = () => {
     const location = useLocation();
+    // useLocation nos permite acceder al state pasado por navigate en la página Cart.jsx
     const { order } = location.state || {}; // obtenemos el pedido pasado por navigate
 
     if (!order) {
@@ -18,7 +18,7 @@ const Summary = () => {
         <div className="cart-flex">
             <h2 className="cart-title">¡Gracias por tu pedido!</h2>
             <p className="summary-text">Resumen del pedido:</p>
-
+            {/** Sección de resumen del pedido. mapeamos los items del pedido */}
             <ul className="cart-ul">
                 {order.items.map((item, index) => (
                     <li key={index} className="summary-item">
@@ -26,9 +26,7 @@ const Summary = () => {
                     </li>
                 ))}
             </ul>
-
             <h3>Total: ${order.totalPrice}</h3>
-
             <Link to="/takeout">
                 <button className="cart-a">Volver al menú</button>
             </Link>

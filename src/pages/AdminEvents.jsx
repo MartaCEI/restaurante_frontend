@@ -7,20 +7,23 @@ const AdminEvents = () => {
     const { events, getEventById, updateEvent, createEvent, softDeleteEvent, getAllEventsAdmin } = useAdmin();
 
     const emptyEvent = { title: "", description: "", date: "", time: "", image: "" };
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [editingEvent, setEditingEvent] = useState(emptyEvent);
-    const [isCreating, setIsCreating] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false); // Control del modal
+    const [editingEvent, setEditingEvent] = useState(emptyEvent); // Evento que se está editando
+    const [isCreating, setIsCreating] = useState(false); // Controla si se está creando un evento
 
+    // Cargar eventos al montar el componente
     useEffect(() => {
         getAllEventsAdmin();
     }, [])
 
+    // Crear nuevo evento
     const handleCreateClick = () => {
         setEditingEvent(emptyEvent);
         setIsCreating(true);
         setIsModalOpen(true);
     };
 
+    // Editar evento existente
     const handleUpdateClick = async (eventId) => {
         const event = await getEventById(eventId);
         if (event) {
@@ -30,6 +33,7 @@ const AdminEvents = () => {
         }
     };
 
+    // Guardar cambios del evento
     const handleSubmit = async (eventData) => {
         // Forzar valor por defecto si image está vacío
         const dataToSend = {
@@ -52,6 +56,7 @@ const AdminEvents = () => {
                 <button className="form-button actualizar" onClick={handleCreateClick}>nuevo</button>
             </div>
 
+            {/* Tabla de eventos */}
             <Table
                 data={events}
                 columns={["title", "date", "time"]}
@@ -59,6 +64,7 @@ const AdminEvents = () => {
                 onDelete={softDeleteEvent}
             />
 
+            {/* Modal para crear/editar evento */}
             <EventModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}

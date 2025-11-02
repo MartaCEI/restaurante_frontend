@@ -1,6 +1,5 @@
-import React from "react";
 
-const TakeOutCard = ({ item, cantidad, agregarItem, quitarItem }) => {
+const TakeOutCard = ({ item, cantidad, agregarItem }) => {
     return (
         <article className="menu-card">
             <div className="card">

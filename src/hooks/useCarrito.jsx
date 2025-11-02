@@ -4,16 +4,14 @@ import { useUser } from "@/hooks/useUser";
 const CarritoContext = createContext();
 
 export const CarritoProvider = ({ children }) => {
-    const { user } = useUser(); // obtengo el usuario logeado
-    const [items, setItems] = useState({});
-    const [totalItems, setTotalItems] = useState(0);
-    const [totalPrice, setTotalPrice] = useState(0);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const { user } = useUser(); // Obtengo el usuario logeado
+    const [items, setItems] = useState({}); // Estado que almacena los items en el carrito
+    const [totalItems, setTotalItems] = useState(0); // Total de items en el carrito
+    const [totalPrice, setTotalPrice] = useState(0); // Precio total del carrito
+    const [error, setError] = useState(null); // Estado para errores
+    const urlBackend = import.meta.env.VITE_BACKEND_URL; // URL del backend desde variables de entorno
 
-    const urlBackend = import.meta.env.VITE_BACKEND_URL;
-
-    // 🔹 Calcular totales
+    // Función para calcular totales (cantidad total y precio total)
     const calcularTotales = (nuevoItems) => {
         let totalCantidad = 0;
         let totalDinero = 0;
@@ -28,7 +26,7 @@ export const CarritoProvider = ({ children }) => {
         setTotalPrice(totalDinero);
     };
 
-    // 🔹 Agregar item
+    // Agregar item al carrito
     const agregarItem = (menuItem) => {
         setItems(prev => {
             const currentQuantity = prev[menuItem._id]?.quantity || 0;
@@ -41,7 +39,7 @@ export const CarritoProvider = ({ children }) => {
         });
     };
 
-    // 🔹 Quitar item
+    // Quitar item del carrito
     const quitarItem = (menuId) => {
         setItems(prev => {
             const item = prev[menuId];
@@ -62,25 +60,25 @@ export const CarritoProvider = ({ children }) => {
         });
     };
 
-    // 🔹 Limpiar carrito
+    // Limpiar carrito
     const limpiarCarrito = () => {
         setItems({});
         setTotalItems(0);
         setTotalPrice(0);
     };
+
+    // Crear un array de items a partir del objeto items para enviar al backend
     const carritoArray = Object.values(items).map(({ item, quantity }) => ({
         menuId: item._id,
         quantity,
-        item // <-- mantener referencia al item completo
+        item // Mantener referencia al item completo
     }));
 
-    const storedUser = localStorage.getItem("user");
-    const userId = storedUser ? JSON.parse(storedUser)._id : null;
-
+    // Checkout: crea un pedido en el backend con los items del carrito
     const checkout = async () => {
         if (!user || !user._id) {
             setError("Usuario no definido");
-            return null; // <-- devolver null si falla
+            return null;
         }
 
         if (carritoArray.length === 0) {
@@ -88,7 +86,6 @@ export const CarritoProvider = ({ children }) => {
             return null;
         }
 
-        setLoading(true);
         setError(null);
 
         try {
@@ -105,39 +102,32 @@ export const CarritoProvider = ({ children }) => {
             const data = await res.json();
 
             if (data.status === "ok") {
+                // Aquí puedes limpiar el carrito tras crear el pedido
                 limpiarCarrito();
-                return data.data; // <-- devolver el pedido creado
+                return data.data; // Devolver el pedido creado
             } else {
-                setError(data.msg || "Error al crear el pedido");
+                setError(data.msg || "Error al crear pedido");
                 return null;
             }
         } catch (err) {
             setError(err.message);
             return null;
-        } finally {
-            setLoading(false);
         }
     };
 
     return (
-        <CarritoContext.Provider
-            value={{
-                items,
-                carritoArray,
-                totalItems,
-                totalPrice,
-                loading,
-                error,
-                agregarItem,
-                quitarItem,
-                limpiarCarrito,
-                checkout
-            }}
-        >
+        <CarritoContext.Provider value={{
+            items,
+            totalItems,
+            totalPrice,
+            error,
+            agregarItem,
+            quitarItem,
+            limpiarCarrito,
+            checkout
+        }}>
             {children}
         </CarritoContext.Provider>
     );
 };
-
-// Hook para usar el contexto fácilmente
 export const useCarrito = () => useContext(CarritoContext);

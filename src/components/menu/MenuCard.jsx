@@ -1,4 +1,4 @@
-const MenuCard = ({ _id, name, description, price }) => {
+const MenuCard = ({ name, description, price }) => {
     return (
         <article className="menu-card">
             <div className="card">

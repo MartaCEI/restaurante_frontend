@@ -5,10 +5,10 @@ import { useOrder } from "@/hooks/useOrders";
 
 const AdminOrders = () => {
     const { orders, updateOrderStatus, deleteOrderPermanently } = useOrder();
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [editingOrder, setEditingOrder] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false); // Controla si el modal está abierto
+    const [editingOrder, setEditingOrder] = useState(null); // Orden que se está editando
 
-    // 
+    // Lista de posibles estados de las órdenes
     const statusList = [
         { value: "pending", label: "Pending" },
         { value: "preparing", label: "En preparación" },
@@ -16,7 +16,7 @@ const AdminOrders = () => {
         { value: "cancelled", label: "Cancelado" }
     ];
 
-
+    // Formatea las órdenes para mostrarlas en la tabla
     const formattedOrders = orders.map(o => ({
         _id: o._id,
         user: o.userId?.name || "Sin usuario",
@@ -32,6 +32,7 @@ const AdminOrders = () => {
         createdAt: new Date(o.createdAt).toLocaleString(),
     }));
 
+    // Abrir modal para actualizar el estado de una orden
     const handleUpdateClick = (orderId) => {
         const order = formattedOrders.find(o => o._id === orderId);
         if (order) {
@@ -40,6 +41,7 @@ const AdminOrders = () => {
         }
     };
 
+    // Maneja el submit del modal y actualiza la orden
     const handleModalSubmit = async (updatedOrder) => {
         await updateOrderStatus(updatedOrder._id, updatedOrder.orderStatus);
         setIsModalOpen(false);
@@ -48,6 +50,7 @@ const AdminOrders = () => {
 
     return (
         <section className="tables-flex">
+            {/* Tabla de órdenes */}
             <Table
                 data={formattedOrders}
                 columns={["email", "orderStatus"]}
@@ -55,6 +58,7 @@ const AdminOrders = () => {
                 onDelete={deleteOrderPermanently}
             />
 
+            {/* Modal para actualizar orden */}
             <OrderModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}

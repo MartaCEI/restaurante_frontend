@@ -1,5 +1,4 @@
 import { NavLink, Link } from "react-router-dom";
-
 // Aquí se muestran las opciones que solo estan avaiable cuando el user NO está conectado. 
 // Boton de login/takeout NO página TakeOut. 
 const MainHeader = () => {

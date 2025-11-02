@@ -6,10 +6,12 @@ import { useAdmin } from "@/hooks/useAdmin";
 const AdminMenu = () => {
     const { dishes, createDish, updateDish, getDishById, softDeleteDish, getAllDishes } = useAdmin();
 
-        useEffect(()=>{
+    // Cargar todos los platos al montar el componente
+    useEffect(()=>{
         getAllDishes();
     },[]);
     
+    // Tipos de platos
     const typeList = [
         { value: "entrantes", label: "entrantes" },
         { value: "arroces", label: "arroces" },
@@ -22,10 +24,10 @@ const AdminMenu = () => {
 
     const emptyDish = { name: "", price: "", description: "", type: "", imageUrl: "https://picsum.photos/200" };
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [editingDish, setEditingDish] = useState(emptyDish);
+    const [isModalOpen, setIsModalOpen] = useState(false); // Control del modal
+    const [editingDish, setEditingDish] = useState(emptyDish); // Plato que se está editando o creando
 
-    // Carga datos vvacios para crear el plato
+    // Carga datos vacíos para crear un plato
     const handleCreateClick = () => {
         setEditingDish(emptyDish);
         setIsModalOpen(true);
@@ -40,6 +42,7 @@ const AdminMenu = () => {
         }
     };
 
+    // Guardar cambios (crear o actualizar)
     const handleSubmit = async (dishData) => {
         if (dishData._id) {
             await updateDish(dishData._id, dishData);
@@ -57,6 +60,7 @@ const AdminMenu = () => {
                 <button className="form-button actualizar" onClick={handleCreateClick}>Nuevo</button>
             </div>
 
+            {/* Tabla de platos */}
             <Table
                 data={dishes}
                 columns={["name", "price"]}
@@ -70,6 +74,7 @@ const AdminMenu = () => {
                 )}
             />
 
+            {/* Modal para crear/editar plato */}
             <DishModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}

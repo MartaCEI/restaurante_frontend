@@ -8,11 +8,13 @@ const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
     // const [imageFile, setImageFile] = useState(null);
     const [errors, setErrors] = useState({});
 
+     // Actualiza el formulario al cambiar los datos iniciales
     useEffect(() => {
         setFormData(initialData);
         setErrors({});
     }, [initialData]);
 
+    // CON VERCEL NO FUNCIONA
     // const uploadImage = async (file) => {
     //     try {
     //         // Aquí va el código original de subida si hay archivo
@@ -38,12 +40,14 @@ const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
     //     }
     // };
 
+    // Maneja cambios en los inputs y errores
     const handleOnChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
         setErrors(prev => ({ ...prev, [name]: "" }));
     };
 
+    // Validación y envío del formulario
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newErrors = {};
@@ -57,6 +61,7 @@ const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
             return;
         }
 
+        // CON VERCEL NO FUNCIONA
         // // Si hay imagen nueva, la subimos antes de crear el evento
         // let imageUrl = formData.image || null;
         // if (imageFile) {
@@ -67,12 +72,15 @@ const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
         //     }
         //     imageUrl = uploadedUrl;
         // }
+
+
         // Forzar imagen por defecto si está vacía
         const dataToSubmit = {
             ...formData,
-            image: formData.image || "imagen.jpg" // <-- valor por defecto
+            image: formData.image || "imagen.jpg"
         };
 
+        // Llamada al submit pasado por props
         onSubmit(dataToSubmit);
     };
 
@@ -82,7 +90,9 @@ const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
         <div className="modal">
             <div className="modal-content">
                 <h2 className="modal-h2">{formData._id ? "Editar Evento" : "Nuevo Evento"}</h2>
+                {/* Cuerpo del modal con inputs */}
                 <div className="modal-body">
+                    {/* Input para el título */}
                     <Input
                         divClassName="form-labels"
                         inputClassName="input"
@@ -97,6 +107,7 @@ const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
                         error={errors.title}
                         inputError="input--error"
                     />
+                    {/* Input para la descripción */}
                     <Input
                         divClassName="form-labels"
                         inputClassName="input"
@@ -111,6 +122,7 @@ const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
                         error={errors.description}
                         inputError="input--error"
                     />
+                    {/* Input para la fecha */}
                     <Input
                         divClassName="form-labels"
                         inputClassName="input"
@@ -125,6 +137,7 @@ const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
                         error={errors.date}
                         inputError="input--error"
                     />
+                    {/* Input para el horario */}
                     <Input
                         divClassName="form-labels"
                         inputClassName="input"
@@ -139,6 +152,7 @@ const EventModal = ({ isOpen, onClose, onSubmit, initialData }) => {
                         error={errors.time}
                         inputError="input--error"
                     />
+                    {/* Input para imagen comentado CON VERCEL NO FUNCIONA */}
                     {/* <Input
                         divClassName="form-labels"
                         inputClassName="input"

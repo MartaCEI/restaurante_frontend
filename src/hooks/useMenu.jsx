@@ -3,10 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 const MenuContext = createContext();
 
 export const MenuProvider = ({ children }) => {
-
     const urlBackend = import.meta.env.VITE_BACKEND_URL;
-    const urlStatic = import.meta.env.VITE_STATIC_URL;
-
     const [filteredDishes, setFilteredDishes] = useState(null);
     const [singleDish, setSingleDish] = useState(null);
     const [error, setError] = useState(null);
